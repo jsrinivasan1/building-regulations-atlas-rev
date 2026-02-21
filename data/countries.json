@@ -1,0 +1,158 @@
+[
+  {
+    "code": "AGO",
+    "name": "Angola",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Lower middle income"
+  },
+  {
+    "code": "BEN",
+    "name": "Benin",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Lower middle income"
+  },
+  {
+    "code": "BWA",
+    "name": "Botswana",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Upper middle income"
+  },
+  {
+    "code": "BFA",
+    "name": "Burkina Faso",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Low income"
+  },
+  {
+    "code": "CPV",
+    "name": "Cabo Verde",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Upper middle income"
+  },
+  {
+    "code": "CMR",
+    "name": "Cameroon",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Lower middle income"
+  },
+  {
+    "code": "CAF",
+    "name": "Central African Republic",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Low income"
+  },
+  {
+    "code": "TCD",
+    "name": "Chad",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Low income"
+  },
+  {
+    "code": "COD",
+    "name": "Congo, Dem. Rep.",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Low income"
+  },
+  {
+    "code": "COG",
+    "name": "Congo, Rep.",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Lower middle income"
+  },
+  {
+    "code": "GNQ",
+    "name": "Equatorial Guinea",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Upper middle income"
+  },
+  {
+    "code": "SWZ",
+    "name": "Eswatini",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Lower middle income"
+  },
+  {
+    "code": "GMB",
+    "name": "Gambia, The",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Low income"
+  },
+  {
+    "code": "GHA",
+    "name": "Ghana",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Lower middle income"
+  },
+  {
+    "code": "LSO",
+    "name": "Lesotho",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Lower middle income"
+  },
+  {
+    "code": "MDG",
+    "name": "Madagascar",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Low income"
+  },
+  {
+    "code": "MLI",
+    "name": "Mali",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Low income"
+  },
+  {
+    "code": "MUS",
+    "name": "Mauritius",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Upper middle income"
+  },
+  {
+    "code": "NAM",
+    "name": "Namibia",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Lower middle income"
+  },
+  {
+    "code": "RWA",
+    "name": "Rwanda",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Low income"
+  },
+  {
+    "code": "SEN",
+    "name": "Senegal",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Lower middle income"
+  },
+  {
+    "code": "SYC",
+    "name": "Seychelles",
+    "region": "Sub-Saharan Africa",
+    "income_group": "High income"
+  },
+  {
+    "code": "SLE",
+    "name": "Sierra Leone",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Low income"
+  },
+  {
+    "code": "SSD",
+    "name": "South Sudan",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Low income"
+  },
+  {
+    "code": "TZA",
+    "name": "Tanzania",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Lower middle income"
+  },
+  {
+    "code": "TGO",
+    "name": "Togo",
+    "region": "Sub-Saharan Africa",
+    "income_group": "Low income"
+  }
+]

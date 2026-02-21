@@ -1,0 +1,98 @@
+{
+  "title": "Building Regulations Atlas",
+  "description": "The Building Regulations Atlas collates data from several World Bank Group resources on topics related to planning, design, and building control regulations and aspects of the wider building regulatory environment in selected cities and countries.",
+  "topics": [
+    {
+      "id": "planning_zoning",
+      "name": "Planning and Zoning",
+      "icon": "map",
+      "sub_topics": []
+    },
+    {
+      "id": "building_design",
+      "name": "Building Design",
+      "icon": "building",
+      "sub_topics": [
+        {
+          "id": "general_provisions",
+          "name": "General Provisions"
+        },
+        {
+          "id": "building_classification",
+          "name": "Building Classification"
+        },
+        {
+          "id": "structural_resilience",
+          "name": "Structural Resilience"
+        },
+        {
+          "id": "fire_safety",
+          "name": "Fire Safety"
+        },
+        {
+          "id": "green_buildings",
+          "name": "Green Buildings"
+        },
+        {
+          "id": "universal_accessibility",
+          "name": "Universal Accessibility"
+        },
+        {
+          "id": "services",
+          "name": "Services"
+        }
+      ]
+    },
+    {
+      "id": "materials",
+      "name": "Materials",
+      "icon": "layers",
+      "sub_topics": []
+    },
+    {
+      "id": "compliance_mechanisms",
+      "name": "Compliance Mechanisms",
+      "icon": "check-circle",
+      "sub_topics": [
+        {
+          "id": "building_control",
+          "name": "Building Control"
+        },
+        {
+          "id": "transparency",
+          "name": "Transparency and Access to Information"
+        },
+        {
+          "id": "dispute_resolution",
+          "name": "Dispute Resolution"
+        },
+        {
+          "id": "professional_registration",
+          "name": "Professional Registration"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "abbrev": "BR",
+      "name": "Business Ready (B-READY)",
+      "year": 2025
+    },
+    {
+      "abbrev": "GABC",
+      "name": "Global Assessment of Building Codes",
+      "year": 2025
+    },
+    {
+      "abbrev": "BG",
+      "name": "Building Green Global Dataset",
+      "year": 2025
+    },
+    {
+      "abbrev": "SSBRR",
+      "name": "Building Regulations in Sub-Saharan Africa",
+      "year": 2023
+    }
+  ]
+}

@@ -1,0 +1,3020 @@
+{
+  "Building Design": {
+    "General Provisions": [
+      {
+        "id": "BR_1_2_1_1_1",
+        "name": "Building Codes/Standards Applicable to All Constructions",
+        "source": "BR",
+        "source_ref": "1.2.1.1.",
+        "description": "Is there a National Building Code and/or a unified set of building standards applicable to all construction in the measured economy?",
+        "availability": "mapped"
+      },
+      {
+        "id": "SSBRR",
+        "name": "Legally adopted building design regulations",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.1",
+        "description": "The country has a legally adopted building regulation than contains some design provisions.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Building code coverage: private buildings",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.5",
+        "description": "The building code has some provisions related to the design and construction of private buildings in the country.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Building code coverage: public buildings",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.5",
+        "description": "The building code has some provisions related to the design and construction of public buildings in the country.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Building code coverage: vernacular buildings",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.5",
+        "description": "The building code has some provisions related to the design and construction of buildings using vernacular methods in the country.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Provisions for existing buildings: alterations or repairs",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.5",
+        "description": "The building code has some proviions related to minor alterations and/or repairs for existing buildings.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Provisions for existing buildings: change of occupancy",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.5",
+        "description": "The building code has some provisions for change of occupancy of existing buildings.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Provisions for existing buildings: additional floors or spaces",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.5",
+        "description": "The building code has some provisions for building additions to existing buildings (additional floors or spaces).",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Simplified design rules for small scale buildings (or \u201crules of thumb\u201d)",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Simplified provisions for certain types of small-scale buildings are permitted_x000D_by the code and these design rules are included in the building regulation document.",
+        "availability": null
+      }
+    ],
+    "Structural Resilience": [
+      {
+        "id": "BR_1_2_1_2_5",
+        "name": "Countries with a building code integrating aspects related with structural strength (materials to be used, such as wood, concrete, tubular or masonry)",
+        "source": "BR",
+        "source_ref": "1.2.1.2. - 5",
+        "description": "Please indicate whether the National Building Code and/or a unified set of building standards provide clear provisions or guidelines for each of the following: - 5. Structural strength (materials to be used, such as wood, concrete, tubular or masonry)",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_2_4",
+        "name": "Countries with a building code integrating Soil testing requirements according to certain criteria (eg - based on classification, strength, compressibility of soil)",
+        "source": "BR",
+        "source_ref": "1.2.1.2. - 4",
+        "description": "Please indicate whether the National Building Code and/or a unified set of building standards provide clear provisions or guidelines for each of the following: - 4. Soil testing requirements according to certain criteria (eg - based on classification, strength, compressibility of soil)",
+        "availability": "unmapped"
+      },
+      {
+        "id": "SSBRR",
+        "name": "Wind actions",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to wind loading actions.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR",
+        "name": "Seismic actions",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to seismic loading actions.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR",
+        "name": "Structural design",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions for structural design.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR",
+        "name": "Geotechnical design",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions for geotechnical design aspects.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR",
+        "name": "Material requirements",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to material specific requirements (e.g., minimum strength requirements and/or detailing of structural materials).",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR",
+        "name": "Provisions for construction materials: masonry (unreinforced)",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to the design of unreinforced masonry.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Provisions for construction materials: masonry (reinforced)",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to the design of reinforced masonry.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Provisions for construction materials: reinforced concrete (cast in place)",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to the design of cast in place reinforced concrete.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Provisions for construction materials: reinforced concrete (pre-cast)",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to the design of pre-cast concrete.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Provisions for construction materials: steel",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to the design of structural steel.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Provisions for construction materials: adobe or rammed earth",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to the design of adobe or rammed earth.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Provisions for construction materials: timber",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to the design of timber structures.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Mandated material testing for construction materials ",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to mandatory testing of construction materials.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Procedure to develop design wind loading",
+        "source": "GABC",
+        "source_ref": "Section 6.2",
+        "description": "The code contains a procedure to determine wind loading, with at least some partial information required to perform wind design for a specific building (for example, a procedure which includes some elements todevelop the level of wind loads based on the location, exposure and soforth, and/or specifies type and level of design wind speeds for a site).",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Country-specific wind- loading design criteria",
+        "source": "GABC",
+        "source_ref": "Section 6.2",
+        "description": "The code contains country-specific wind design criteria for a site (for example, _x000D_country, region or city specific wind speed maps).",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Simplified wind-loading design procedures",
+        "source": "GABC",
+        "source_ref": "Section 6.2",
+        "description": "The effect of wind (suction or pressure) is simulated as static wind pressure _x000D_for the design of structural and nonstructural elements and their connections.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Wind importance factors",
+        "source": "GABC",
+        "source_ref": "Section 6.2",
+        "description": "Importance of different buildings based on their occupancy/function (for _x000D_example, importance factor) is considered in the design for wind.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Wind design procedure for tall buildings",
+        "source": "GABC",
+        "source_ref": "Section 6.2",
+        "description": "Dynamic effects of wind are considered in the design of tall buildings_x000D_ according to the code-prescribed procedure.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Wind design provisions for roof cladding and roof overhangs",
+        "source": "GABC",
+        "source_ref": "Section 6.2",
+        "description": "Requirements to design roof cladding and roof overhangs to resist strong _x000D_winds. These could also include provisions related to roof shape.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Wind design of wall cladding and nonstructural appendages",
+        "source": "GABC",
+        "source_ref": "Section 6.2",
+        "description": "Requirements to design nonstructural cladding and appendages (cladding,_x000D_ gutters, equipment, and so on) to resist strong winds.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Wind design of fa\u00e7ade - wind bourne debris",
+        "source": "GABC",
+        "source_ref": "Section 6.2",
+        "description": "Requirements to design fa\u00e7ade to resist damage from wind- borne debris.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Wind design fa\u00e7ade detailing - water ingress",
+        "source": "GABC",
+        "source_ref": "Section 6.2",
+        "description": "Requirements to detail fa\u00e7ade to resist water ingress during a strong wind event.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Detailing of doors and door mechanisms for strong winds",
+        "source": "GABC",
+        "source_ref": "Section 6.2",
+        "description": "Requirements to detail doors and door mechanisms to resist strong winds.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Procedure for seismic design criteria",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "The code contains a procedure to determine seismic design parameters, with at least some partial information required to perform seismic design for a specific building (for example, a procedure that specifies some elements which may include the level of design seismic hazard for a specific site and/or a procedure to determine the design level of seismic base shear).",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Country specific seismic criteria",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "The code contains country-specific seismic hazard parameters for design (for example, seismic hazard maps, seismic zonation maps or other seismic criteria parameters by site location or city, region, and so on).",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Consideration of soil effects in seismic design criteria",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Effect of soil conditions is considered in seismic analysis/design according to the code.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Seismic importance factors",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "The importance of different buildings in a post-earthquake situation is _x000D_considered based on their occupancy/function (for example, importance_x000D_ category).",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Simplified seismic analysis procedures_x000D_ (for example, equivalent static)",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "A procedure to perform Equivalent Static Seismic Analysis is included in _x000D_the code.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Dynamic seismic analysis procedures_x000D_ (for example, response spectra,_x000D_ response time history analysis)",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Procedures to perform dynamic analysis, for example, Response Spectra _x000D_(multimodal) analysis and/or response history analysis, are included in the_x000D_ code and are required in some cases.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Nonlinear static seismic analysis _x000D_procedures (for example, pushover)",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "A procedure to perform nonlinear static seismic analysis (pushover analysis)_x000D_ is included in the code.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Seismic ductility requirements and factors",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Seismic force modification factors are prescribed for reinforced concrete and structural steel systems which are expected to be designed to perform at different ductility levels.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Seismic drift limits",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Lateral displacement limits (for example, maximum inter-story displacement/drift) are prescribed for different buildings depending on their importance category.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Seismic design requirements related to building regularity (vertical and horizontal)",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Provisions regarding  the seismic analysis/design of structures with horizontal (plan)_x000D_ and vertical (elevation) irregularities are included in the code.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Seismic design: diaphragm design",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Some provisions for seismic design of floor diaphragms are included (for example, these could include diaphragm material specific provisions (concrete/steel/timber), design forces, diaphragm stiffness considerations, collector and connection forces, anchorage of walls).",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Seismic design: advanced systems (base isolation, added damping systems, and so on)",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Seismic analysis and design provisions for structures equipped with base isolation _x000D_devices and/or supplemental damping systems are included.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Seismic design: non structural components",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Some provisions for seismic design of nonstructural components are included in the code (such as for the fa\u00e7ade/building envelope; parapets; nonstructural/infill walls; mechanical, electrical, plumbing\u2014MEP\u2014equipment).",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Ductile detailing of lateral resisting systems: concrete moment frames",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Seismic design provisions that ensure ductile seismic performance of concrete moment frames - medium and/or high ductility (also called intermediate and/or special). For example, the Capacity Design approach and/or prescriptive requirements that ensure ductile behavior are included in the code.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Ductile detailing of lateral resisting systems: concrete shear wall",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Seismic design provisions that ensure ductile seismic performance of concrete shear wall - medium and/or high ductility. For example, the Capacity Design approach and/or prescriptive requirements that ensure ductile behavior are included in the code.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Ductile detailing of lateral resisting systems: steel moment resisting frames",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Seismic design provisions that ensure ductile seismic performance of steel moment resisting frames - medium and/or high ductility (also _x000D_called ordinary and/or special). For example, the Capacity Design approach and/or prescriptive requirements that ensure ductile behavior are included in the code.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Ductile detailing of lateral resisting systems: steel braced frame systems",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Seismic design provisions that ensure ductile seismic performance of steel braced frame systems (concentric, eccentric and/or buckling_x000D_restrained brace frame). For example, the Capacity Design approach and/or prescriptive requirements that ensure ductile behavior are included in the code.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Ductile detailing of lateral resisting systems: confined masonry systems",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Seismic design provisions that ensure ductile seismic performance of confined masonry systems. For example, the Capacity Design approach and/or prescriptive requirements that ensure ductile behavior are included in the code.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Ductile detailing of lateral resisting systems: timber lateral resisting systems",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Seismic design provisions that ensure ductile seismic performance of timber lateral resisting systems (nailed plywood shear walls and/or_x000D_ other types). For example, the Capacity Design approach and/or prescriptive requirements that ensure ductile behavior are included in the code.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Ductile detailing of lateral resisting systems: masonry systems",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "Seismic design provisions that ensure ductile seismic performance of masonry systems. For example, the Capacity Design approach and/or prescriptive requirements that ensure ductile behavior are included in the code.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Provisions for seismic assessment_x000D_ and retrofit of existing buildings",
+        "source": "GABC",
+        "source_ref": "Section 5.2",
+        "description": "The code includes provisions related to seismic assessment and retrofit of_x000D_ existing buildings.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Load procedure for flood loading",
+        "source": "GABC",
+        "source_ref": "Section 7.2",
+        "description": "Provisions for determining loading from flooding, and/or storm surge.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Design for flooding: higher level evacuation areas",
+        "source": "GABC",
+        "source_ref": "Section 7.2",
+        "description": "Requirements for higher level evacuation areas for building occupants (for _x000D_example roof access, balconies) in case of a flood event.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Limitations on occupied zones below the design flood level",
+        "source": "GABC",
+        "source_ref": "Section 7.2",
+        "description": "Provisions that limit or prohibit occupied zones below the design flood_x000D_ level.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Design for flooding: critical equipment and services",
+        "source": "GABC",
+        "source_ref": "Section 7.2",
+        "description": "Requirements to locate critical equipment and/or services above design_x000D_ flood level.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Design for flooding: structural and nonstructural materials",
+        "source": "GABC",
+        "source_ref": "Section 7.2",
+        "description": "Provisions related to structural and nonstructural material requirements in_x000D_ relation to flooding.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Design for flooding: vents, valves or other wall openings",
+        "source": "GABC",
+        "source_ref": "Section 7.2",
+        "description": "Requirements for the design of vents, valves or other openings in the walls _x000D_of enclosed spaces below the design flood level to equalize lateral water_x000D_ pressures.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Site investigation",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "The codes includes provisions for performing geotechnical site investigations and, in some cases, the code requires site investigation to be carried out.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Design of foundations",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Some provisions of the code relate to the design of foundations for buildings (including how to develop foundation design parameters based on soil type, soil data, and so on).",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Design of retaining walls",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Some provisions relate to the design of retaining walls for buildings (including how to develop retaining wall design parameters based on soil type, soil data,and so on).",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Dead and live loading",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Provisions for determining dead loads and minimum live loads are included in the code.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Load combinations",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "The building regulation document contains load combinations for all applicable loads and materials that are covered within the document.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Provisions for construction materials: reinforced concrete",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Some structural design provisions are in place for reinforced concrete.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Provisions for construction materials: pre-cast concrete",
+        "source": null,
+        "source_ref": "Section 4.1.3",
+        "description": "Some structural design provisions are in place for pre-cast concrete.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Provisions for construction materials: structural steel",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Some structural design provisions are in place for structural steel.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Provisions for construction materials: reinforced masonry and/or reinforced grouted hollow block masonry",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Some structural design provisions are in place for reinforced masonry and/or reinforced grouted hollow block masonry.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Provisions for construction materials: confined masonry",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Some structural design provisions are in place for confined masonry.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Provisions for construction materials: unreinforced masonry (hollow block and/or brick and/or stone)",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Some structural design provisions are in place for unreinforced masonry (hollow block and/or brick and/or stone).",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Provisions for construction materials: timber",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Some structural design provisions are in place for timber.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Provisions for construction materials: earth (including adobe, soil stabilized block, rammed earth, and so on)",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Some structural design provisions are in place for earth (including adobe, soil stabilized block, rammed earth, and so on)",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Provisions for construction materials: bamboo",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Some structural design provisions are in place for bamboo.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Minimum material requirements for concrete and reinforcing bars",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "The code specifies minimum structural material requirements for reinforced concrete (minimum compressive strength, minimum strength and ductility requirements for reinforcing steel).",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Structural requirements for additions (extensions)",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "The code includes some provisions related to structural considerations (including seismic design where applicable) for horizontal and/or vertical building extensions (this may include addressing incremental construction practices).",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Structural requirements for change of occupancy/use",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "The code includes some provisions that would prompt consideration of the existing structural system capacity (including seismic design where applicable) when a change of use or occupancy is made.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Structural assessment",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "The code includes provisions related to assessment of the structural condition of existing buildings.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Provisions for retrofit (including structural changes)",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.5",
+        "description": "The code contains some provisions related to building retrofit, including provisions related to structural design of retrofits.",
+        "availability": null
+      },
+      {
+        "id": "BR_1_2_1_2_1",
+        "name": "Countries with natural disaster resistant construction related standards",
+        "source": "BR",
+        "source_ref": "1.2.1.2. - 1",
+        "description": "Please indicate whether the National Building Code and/or a unified set of building standards provide clear provisions or guidelines for each of the following: - 1. Natural disaster resistant construction (e.g., floods, storms, earthquakes, etc.)",
+        "availability": "mapped"
+      },
+      {
+        "id": "SSBRR_006",
+        "name": "Flood mitigation",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to flood mitigation.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR_007",
+        "name": "Landslides",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to landslides.",
+        "availability": "external"
+      }
+    ],
+    "Building Classification": [
+      {
+        "id": "BR_1_2_1_2_2",
+        "name": "Countries with a building code integrating building classification according to certain criteria (e.g., usage; size)",
+        "source": "BR",
+        "source_ref": "1.2.1.2. - 2",
+        "description": "Please indicate whether the National Building Code and/or a unified set of building standards provide clear provisions or guidelines for each of the following: - 2. Building classification according to certain criteria (e.g., usage; size)",
+        "availability": "mapped"
+      },
+      {
+        "id": "SSBRR_008",
+        "name": "Use and occupancy classifications",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to use and occupancy classifications.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR_009",
+        "name": "Height and areas limitations based on the type of construction",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to height and areas limitations based on the type of construction.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR_010",
+        "name": "Special considerations for certain building types",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to special design considerations for certain building types.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC_026",
+        "name": "Importance or risk classification of buildings",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "The code contains importance and/or risk classification of buildings (sometimesalso called consequence classes).",
+        "availability": "external"
+      }
+    ],
+    "Fire Safety": [
+      {
+        "id": "BR_1_2_1_2_3",
+        "name": "Countries with a building code integrating active and passive fire safety measures",
+        "source": "BR",
+        "source_ref": "1.2.1.2. - 3",
+        "description": "Please indicate whether the National Building Code and/or a unified set of building standards provide clear provisions or guidelines for each of the following: - 3. Active and passive fire safety measures",
+        "availability": "mapped"
+      },
+      {
+        "id": "SSBRR_011",
+        "name": "Fire resistance performance requirements",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code has some provisions related to fire resistance performance requirements.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR_012",
+        "name": "Means of access and egress",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code has some provisions related to means of egress and access in case of fire.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR_013",
+        "name": "Fire prevention",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code has some provisions related to fire prevention.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR_014",
+        "name": "Fire service access",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code has some provisions related to fire service access.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Fire resistance of structural elements",
+        "source": "GABC",
+        "source_ref": "Section 4.1.3",
+        "description": "Some provisions related to fire resistance of the main structural elements are included in the code.",
+        "availability": null
+      }
+    ],
+    "Universal Accessibility": [
+      {
+        "id": "BR_UQ_1",
+        "name": "Accessibility and inclusivity standard applicable to all construction",
+        "source": "BR-UQ",
+        "source_ref": null,
+        "description": null,
+        "availability": "mapped"
+      },
+      {
+        "id": "SSBRR_018",
+        "name": "Access route and means",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code has some provisions related to access routes and means for people of all ages and abilities.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR_019",
+        "name": "Fixtures and signals",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code has some provisions related to design of fixtures and signals for people of all ages and abilities.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR_020",
+        "name": "Accessibility and usability of internal facilities",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code has some provisions related to accessibility and usability of internal facilities for people of all ages and abilities.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC_037",
+        "name": "External environment",
+        "source": "GABC",
+        "source_ref": "Section 10.1.3",
+        "description": "External environment (for example, approach to building entrance, circulation routes, and so on). The regulation document contains some provisions on universal accessibility requirements related to the external environment.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Entrances, doors, and lobbies",
+        "source": "GABC",
+        "source_ref": "Section 10.1.3",
+        "description": "The regulation document contains some provisions related to universal_x000D_ accessibility requirements for entrances, doors and/or lobbies.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Horizontal and vertical circulation within a building",
+        "source": "GABC",
+        "source_ref": "Section 10.1.3",
+        "description": "The regulation document contains some provisions related to universal_x000D_ accessibility requirements for horizontal and vertical circulation.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Building facilities",
+        "source": "GABC",
+        "source_ref": "Section 10.1.3",
+        "description": "The regulation document contains some provisions related to universal_x000D_ accessibility requirements for building facilities, including WC/toilets.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Building fixtures and fittings to assist_x000D_ with orientation, wayfinding, and_x000D_ communication",
+        "source": "GABC",
+        "source_ref": "Section 10.1.3",
+        "description": "The regulation document contains some provisions related to universal_x000D_ accessibility requirements for building fixtures and fittings.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Evacuation and safe egress",
+        "source": "GABC",
+        "source_ref": "Section 10.1.3",
+        "description": "The regulation document contains some provisions related to universal_x000D_ accessibility requirements for evacuation and safe egress.",
+        "availability": null
+      }
+    ],
+    "Green Buildings": [
+      {
+        "id": "BR_1_2_2_1_1",
+        "name": "Are there legally required minimum energy efficiency performance standards in the building code or any other building regulations?",
+        "source": "BR",
+        "source_ref": "1.2.2.1.",
+        "description": "Are there legally required minimum energy efficiency performance standards in the building code or any other building regulations?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_2_2_1",
+        "name": "Is proof of compliance with energy efficiency standards included as a precondition for obtaining a building permit?",
+        "source": "BR",
+        "source_ref": "1.2.2.2.",
+        "description": "Is proof of compliance with energy efficiency standards included as a precondition for obtaining a building permit?",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_2_3_1",
+        "name": "Thermal transmittance or insulation calculations for building envelopes are verified as part of the energy efficiency performance standards",
+        "source": "BR",
+        "source_ref": "1.2.2.3. - 1",
+        "description": "Please indicate which elements of the energy efficiency performance standards are verified as part of the building plans review process? - 1. Thermal transmittance or insulation calculations for building envelopes",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_2_3_2",
+        "name": "Solar heat gain calculations for building envelope are verified as part of the energy efficiency performance standards",
+        "source": "BR",
+        "source_ref": "1.2.2.3. - 2",
+        "description": "Please indicate which elements of the energy efficiency performance standards are verified as part of the building plans review process? - 2. Solar heat gain calculations for building envelope",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_2_3_3",
+        "name": "Glazing factors for fenestration are verified as part of the energy efficiency performance standards",
+        "source": "BR",
+        "source_ref": "1.2.2.3. - 3",
+        "description": "Please indicate which elements of the energy efficiency performance standards are verified as part of the building plans review process? - 3. Glazing factors for fenestration",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_2_3_4",
+        "name": "Heating/cooling demand calculations are verified as part of the energy efficiency performance standards",
+        "source": "BR",
+        "source_ref": "1.2.2.3. - 4",
+        "description": "Please indicate which elements of the energy efficiency performance standards are verified as part of the building plans review process? - 4. Heating/cooling demand calculations",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_2_3_5",
+        "name": "Daylighting and orientation are verified as part of the energy efficiency performance standards",
+        "source": "BR",
+        "source_ref": "1.2.2.3. - 5",
+        "description": "Please indicate which elements of the energy efficiency performance standards are verified as part of the building plans review process? - 5. Daylighting and orientation",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_2_3_6",
+        "name": "Permanent shading are verified as part of the energy efficiency performance standards",
+        "source": "BR",
+        "source_ref": "1.2.2.3. - 6",
+        "description": "Please indicate which elements of the energy efficiency performance standards are verified as part of the building plans review process? - 6. Permanent shading",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_2_3_7",
+        "name": "Air barrier, air leakage or air infiltration are verified as part of the energy efficiency performance standards",
+        "source": "BR",
+        "source_ref": "1.2.2.3. - 7",
+        "description": "Please indicate which elements of the energy efficiency performance standards are verified as part of the building plans review process? - 7. Air barrier, air leakage or air infiltration",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_2_3_8",
+        "name": "Required minimum efficiency of heating and cooling equipment and controls standards are verified as part of the energy efficiency performance standards",
+        "source": "BR",
+        "source_ref": "1.2.2.3. - 8",
+        "description": "Please indicate which elements of the energy efficiency performance standards are verified as part of the building plans review process? - 8. Efficiency of heating and cooling equipment and controls",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_2_3_9",
+        "name": "Required minimum standards for efficiency of water heating equipment and controls are verified as part of the energy efficiency performance standards",
+        "source": "BR",
+        "source_ref": "1.2.2.3. - 9",
+        "description": "Please indicate which elements of the energy efficiency performance standards are verified as part of the building plans review process? - 9. Efficiency of water heating equipment and controls",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_2_3_10",
+        "name": "Efficiency of lighting fixtures and controls are verified as part of the energy efficiency performance standards ",
+        "source": "BR",
+        "source_ref": "1.2.2.3. - 10",
+        "description": "Please indicate which elements of the energy efficiency performance standards are verified as part of the building plans review process? - 10. Efficiency of lighting fixtures and controls",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_2_4_1",
+        "name": "Are there any incentives provided to builders in order to promote green building standards?",
+        "source": "BR",
+        "source_ref": "1.2.2.4.",
+        "description": "Are there any incentives provided to builders in order to promote green building standards?",
+        "availability": "mapped"
+      },
+      {
+        "id": "SSBRR_021",
+        "name": "Natural Insulation and ventilation",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to natural insulation and ventilation.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR_022",
+        "name": "Green building construction material",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to construction materials which are more sustainable and meet green building requirements.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR_023",
+        "name": "Energy and water efficient design methods",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to energy and water efficient design requirements.",
+        "availability": "external"
+      },
+      {
+        "id": "SSBRR_024",
+        "name": "Carbon smart/neutral construction",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The building code contains some provisions related to carbon smart/neutral construction.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Building orientation",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Orientating the building to optimize the level of direct heat from sunlight entering the building. The regulation includes some voluntary provisions on building orientation to_x000D_ control solar heat gain and/or improve natural ventilation.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Daylighting",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "The regulation includes some voluntary provisions on building orientation to control solar heat gain and/or improve natural ventilation. The regulation document specifies voluntary or mandatory provisions related _x000D_to daylighting (for example, that a certain percentage of habitable building_x000D_ area must be adequately lit through daylight).",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Natural ventilation",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Natural ventilation to provide fresh air indoors and support cooling. The regulation document contains provisions which require a certain amount of operable window, glazing, or perforation area with respect to the room\u2019s usable floor area.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Solar shading",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "External solar shading to control solar heat gain. The regulation document provides guidance on various types of shading_x000D_ elements and related design provisions (voluntary or mandatory).",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Insulation of walls, roofs and windows _x000D_(U-value requirements)",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Insulation of walls, roofs and windows to stop over-heating in hot weather and heat loss in cold weather. The regulation documents specify mandatory U-value requirements for the_x000D_ walls, roofs and/or window assemblies.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Window-to-Wall Ratio (WWR)",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Window-to-Wall Ratio (WWR) requirements to balance the need for light and ventilation with the amount of solar heat gain from glazed areas. The regulation documents have mandatory provisions related to WWRs (and_x000D_provide a formula to calculate WWR). These can include requirements for _x000D_minimum or maximum WWR and/or different WWRs for differently oriented_x000D_ walls.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Reflective walls and roofs",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Reflective walls and roofs to reduce solar heat gain. The regulations specify mandatory solar reflectance index (SRI) values for_x000D_ walls and/or roofs.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Green walls and roofs",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Green walls or roofs to cool buildings both externally and internally. The regulations document addresses their design and construction. If the provisions are mandatory, they may include minimum standard for such roofs and walls in terms of area covered by vegetation.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Energy efficient lighting",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Energy efficient lighting (for example, LEDs, light sensors, and so on). The regulation document specifies light power density for various types of_x000D_buildings and/or a minimum level of lumens per watt for lighting fixtures _x000D_and/or requirements for sensors such as daylight sensors and/or occupancy_x000D_ sensors to control the use of lighting depending on user needs.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Energy-efficient Heating Ventilation_x000D_ and Air Conditioning (HVAC) systems",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Energy-efficient heating ventilation and air conditioning (HVAC) mechanical systems. The regulation document contains some mandatory provisions related to measures to improve energy efficiency of HVAC systems and other equipment. These could include requirements for pipe and duct insulation, ceiling fans, air economizers, setting a minimum coefficient of performance for air conditioning and/or heating equipment, heat recovery from return air and/or requirements for variable frequency drives.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Renewable energy",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Renewable methods to supply the building with energy (for example, solar panels, geothermal). The regulation document includes some provisions related to onsite generation of electricity through solar power or wind and/or connection to a grid that provides off-site renewable energy (voluntary or mandatory).",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Water-efficient fixtures and fittings",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Water-efficient fixtures and fittings (for example, low-flow toilets, taps, and so on). The regulation document includes mandatory provisions related to water-efficient fixtures and fittings. For example, it may specify flow rates by type of fixture or fitting (for example, faucets, showers, toilets).",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Water collection/water re-use",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Water collection/water re-use (for example, rainwater harvesting, use of grey water for certain functions). The regulation document includes some voluntary or mandatory provisions_x000D_for this (for example, condensate recovery, rainwater harvesting, re-use of_x000D_ treated water for potable and nonpotable uses).",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Recycled building materials",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Recycled building materials (for example, requirements for a building to use recycled materials and/or be recyclable). The regulation document specifies a mandatory percentage of building materials to be made of recycled materials.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC",
+        "name": "Low embodied energy materials",
+        "source": "GABC",
+        "source_ref": "Section 9.1.3",
+        "description": "Low embodied energy materials (for example, materials with lower carbon footprints). The regulation document encourages or prescribes the use of low embodied energy materials and/or gives guidance on how to calculate the carbon footprint of the building materials and optimize building material used to reduce the carbon footprint.",
+        "availability": "external"
+      },
+      {
+        "id": "BG",
+        "name": "Country (Official WB name)",
+        "source": "BG",
+        "source_ref": "DEM-INFO-01",
+        "description": "Katherine: There doesn't seem to be a clear detailed descriptive of the data (beyond the indicator name). Confirm with Jayashree's team.",
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "ISO",
+        "source": "BG",
+        "source_ref": "DEM-INFO-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "City",
+        "source": "BG",
+        "source_ref": "DEM-INFO-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Region",
+        "source": "BG",
+        "source_ref": "DEM-INFO-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Climate",
+        "source": "BG",
+        "source_ref": "DEM-INFO-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Income Group",
+        "source": "BG",
+        "source_ref": "DEM-INFO-06",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Unified BEC Existence",
+        "source": "BG",
+        "source_ref": "BEC-INFO-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Unified BEC or standard Name",
+        "source": "BG",
+        "source_ref": "BEC-INFO-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "BEC or Standard Jurisdiction",
+        "source": "BG",
+        "source_ref": "BEC-INFO-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "BEC or Standard Approach",
+        "source": "BG",
+        "source_ref": "BEC-INFO-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Primary Energy Performance Requirements",
+        "source": "BG",
+        "source_ref": "BEC-INFO-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Projects Types Covered (Number)",
+        "source": "BG",
+        "source_ref": "BEC-PROJ-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Projects Covered: New Buildings",
+        "source": "BG",
+        "source_ref": "BEC-PROJ-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Projects Covered: Renovations",
+        "source": "BG",
+        "source_ref": "BEC-PROJ-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Projects Covered: Additions",
+        "source": "BG",
+        "source_ref": "BEC-PROJ-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Projects Covered: Alterations",
+        "source": "BG",
+        "source_ref": "BEC-PROJ-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Projects Covered: Repair Projects",
+        "source": "BG",
+        "source_ref": "BEC-PROJ-06",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Projects Covered: Change of Occupancy",
+        "source": "BG",
+        "source_ref": "BEC-PROJ-07",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Buildings Exempted in Practice (Number)",
+        "source": "BG",
+        "source_ref": "BEC-EXEM-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Buildings Exempted in Practice: Retail",
+        "source": "BG",
+        "source_ref": "BEC-EXEM-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Buildings Exempted in Practice: Office Buildings",
+        "source": "BG",
+        "source_ref": "BEC-EXEM-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Buildings Exempted in Practice: Public Service",
+        "source": "BG",
+        "source_ref": "BEC-EXEM-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Buildings Exempted in Practice: Medical Services",
+        "source": "BG",
+        "source_ref": "BEC-EXEM-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Buildings Exempted in Practice: Education",
+        "source": "BG",
+        "source_ref": "BEC-EXEM-06",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Buildings Exempted in Practice: Warehouses",
+        "source": "BG",
+        "source_ref": "BEC-EXEM-07",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Buildings Exempted in Practice: Entertainment",
+        "source": "BG",
+        "source_ref": "BEC-EXEM-08",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Buildings Exempted in Practice: Singles Houses",
+        "source": "BG",
+        "source_ref": "BEC-EXEM-09",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Buildings Exempted in Practice: Townhouses",
+        "source": "BG",
+        "source_ref": "BEC-EXEM-10",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Buildings Exempted in Practice: Apartment Buildings",
+        "source": "BG",
+        "source_ref": "BEC-EXEM-11",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Buildings Exempted in Practice: Movable Dwellings",
+        "source": "BG",
+        "source_ref": "BEC-EXEM-12",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "BEC Enforced in Practice",
+        "source": "BG",
+        "source_ref": "ENF-INFO-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Year BEC First Enforced",
+        "source": "BG",
+        "source_ref": "ENF-INFO-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Third Party Enforcement System (Number)",
+        "source": "BG",
+        "source_ref": "ENF-AUTH-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Third Party Enforcement System: A description of the procedure to authorize third-party inspectors",
+        "source": "BG",
+        "source_ref": "ENF-AUTH-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Third Party Enforcement System: A description of the professional qualifications required to register as a third-party inspector",
+        "source": "BG",
+        "source_ref": "ENF-AUTH-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Third Party Enforcement System: Establish an independent body charged with developing guidelines, standards and/or codes of conduct for third-party inspectors",
+        "source": "BG",
+        "source_ref": "ENF-AUTH-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Third Party Enforcement System: Establish a supervisory body to ensure third-party inspections are conducted appropriately and without conflict of interest",
+        "source": "BG",
+        "source_ref": "ENF-AUTH-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Pre-Construction Design Compliance (Building Permit)",
+        "source": "BG",
+        "source_ref": "ENF-PERM-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Design Compliance Components (Number)",
+        "source": "BG",
+        "source_ref": "ENF-PERM-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Design Compliance Components: Checklist of Passive Design Features",
+        "source": "BG",
+        "source_ref": "ENF-PERM-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Design Compliance Components: Energy Verification Worksheets",
+        "source": "BG",
+        "source_ref": "ENF-PERM-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Design Compliance Components: Energy Models",
+        "source": "BG",
+        "source_ref": "ENF-PERM-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Design Compliance Components: Commissioning Plans",
+        "source": "BG",
+        "source_ref": "ENF-PERM-06",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Design Compliance Components: HVAC Plans",
+        "source": "BG",
+        "source_ref": "ENF-PERM-07",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Design Compliance Components: Lighting Plans and Schedules",
+        "source": "BG",
+        "source_ref": "ENF-PERM-08",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Plan Review Components (Number)",
+        "source": "BG",
+        "source_ref": "ENF-REVW-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Plan Review Components: Thermal transmittance or insulation calculations for building envelope\u00a0",
+        "source": "BG",
+        "source_ref": "ENF-REVW-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Plan Review Components: Solar heat gain calculations for building envelope\u00a0",
+        "source": "BG",
+        "source_ref": "ENF-REVW-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Plan Review Components: Glazing factors for fenestration\u00a0",
+        "source": "BG",
+        "source_ref": "ENF-REVW-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Plan Review Components: Heating/cooling demand calculations\u00a0",
+        "source": "BG",
+        "source_ref": "ENF-REVW-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Plan Review Components: Daylighting and orientation\u00a0\u00a0",
+        "source": "BG",
+        "source_ref": "ENF-REVW-06",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Plan Review Components: Permanent shading\u00a0\u00a0",
+        "source": "BG",
+        "source_ref": "ENF-REVW-07",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Plan Review Components: Air barrier, air leakage or air infiltration\u00a0",
+        "source": "BG",
+        "source_ref": "ENF-REVW-08",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Plan Review Components: Efficiency of heating and cooling equipment and controls\u00a0",
+        "source": "BG",
+        "source_ref": "ENF-REVW-09",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Plan Review Components: Efficiency of water heating equipment and controls\u00a0",
+        "source": "BG",
+        "source_ref": "ENF-REVW-10",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Plan Review Components: Efficiency of lighting fixtures and controls\u00a0",
+        "source": "BG",
+        "source_ref": "ENF-REVW-11",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Building Plan Review Components: Insulation and heat traps\u00a0",
+        "source": "BG",
+        "source_ref": "ENF-REVW-12",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Post-Construction Design Compliance (Occupancy)",
+        "source": "BG",
+        "source_ref": "ENF-POST-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Post-Construction Design Compliance in Practice (Occupancy) (Number)",
+        "source": "BG",
+        "source_ref": "ENF-POST-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "As-Built Energy Verification or Compliance in Practice",
+        "source": "BG",
+        "source_ref": "ENF-POST-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Visual / Walkthrough Inspection in Practice",
+        "source": "BG",
+        "source_ref": "ENF-POST-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Energy Audit in Practice",
+        "source": "BG",
+        "source_ref": "ENF-POST-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Retro Commissioning Standards",
+        "source": "BG",
+        "source_ref": "ENF-RETR-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Retrofitting Requirements",
+        "source": "BG",
+        "source_ref": "ENF-RETR-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Public Disclosure of Energy Performance",
+        "source": "BG",
+        "source_ref": "ENF-DISC-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Disclosure Mechanisms (Number)",
+        "source": "BG",
+        "source_ref": "ENF-DISC-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Disclosure Mechanism: Parametric Energy Use Monitoring",
+        "source": "BG",
+        "source_ref": "ENF-DISC-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Disclosure Mechanism: Parametric Energy Performance Analysis",
+        "source": "BG",
+        "source_ref": "ENF-DISC-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Disclosure Mechanism: Building Schedule of Maintenance",
+        "source": "BG",
+        "source_ref": "ENF-DISC-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Disclosure Mechanism: Metered Energy Data Display",
+        "source": "BG",
+        "source_ref": "ENF-DISC-06",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Disclosure Mechanism:  CO2 Emissions Equivalents",
+        "source": "BG",
+        "source_ref": "ENF-DISC-07",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Requirements on Construction Materials (Number)",
+        "source": "BG",
+        "source_ref": "ENF-MATR-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Requirements on Construction Materials: Energy Efficiency Ratings",
+        "source": "BG",
+        "source_ref": "ENF-MATR-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Requirements on Construction Materials: Mandatory Labeling",
+        "source": "BG",
+        "source_ref": "ENF-MATR-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Requirements on Construction Materials: Mandatory Laboratory Testing",
+        "source": "BG",
+        "source_ref": "ENF-MATR-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Requirements on Construction Materials: Mandatory Independent Certification",
+        "source": "BG",
+        "source_ref": "ENF-MATR-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Resources to Facilitate Compliance",
+        "source": "BG",
+        "source_ref": "RES-FACI-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Resources to Facilitate Compliance: Designer and Occupant Guides",
+        "source": "BG",
+        "source_ref": "RES-FACI-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Resources to Facilitate Compliance: Consumer Databases for Energy-Efficient Appliances",
+        "source": "BG",
+        "source_ref": "RES-FACI-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Resources to Facilitate Compliance: Training Programs",
+        "source": "BG",
+        "source_ref": "RES-FACI-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Financial Incentives",
+        "source": "BG",
+        "source_ref": "RES-FINA-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Financial Incentives: Grants ",
+        "source": "BG",
+        "source_ref": "RES-FINA-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Financial Incentives: Tax Credits",
+        "source": "BG",
+        "source_ref": "RES-FINA-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Financial Incentives: Rebates",
+        "source": "BG",
+        "source_ref": "RES-FINA-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Financial Incentives: Loans",
+        "source": "BG",
+        "source_ref": "RES-FINA-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Passive Design Coverage",
+        "source": "BG",
+        "source_ref": "REQ-PAS-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Passive Design Enforcement Mechanisms (Summary)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Passive Design Enforcement Mechanisms: Checklist of Passive Design",
+        "source": "BG",
+        "source_ref": "REQ-PAS-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Passive Design Enforcement Mechanisms: Thermal Transmittance or Insulation Calculations for Building Envelope",
+        "source": "BG",
+        "source_ref": "REQ-PAS-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Passive Design Enforcement Mechanisms: Solar Heat Gains Calculations for Building Envelope",
+        "source": "BG",
+        "source_ref": "REQ-PAS-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Passive Design Enforcement Mechanisms: Glazing Factors for Fenestration",
+        "source": "BG",
+        "source_ref": "REQ-PAS-06",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Passive Design Enforcement Mechanisms: Permanent Shading",
+        "source": "BG",
+        "source_ref": "REQ-PAS-07",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Passive Design Enforcement Mechanisms: Air Barrier, Air Leakage, or Air Infiltration",
+        "source": "BG",
+        "source_ref": "REQ-PAS-08",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance",
+        "source": "BG",
+        "source_ref": "REQ-PAS-09",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance: Roof U-value (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-10",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance: Roof U-value (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-11",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance: Floors U-value (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-12",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance: Floors U-value (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-13",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance: External Walls U-value (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-14",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance: External Walls U-value (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-15",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance: Doors U-value (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-16",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance: Doors U-value (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-17",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance: Windows U-value (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-18",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance: Windows U-value (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-19",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance: Skylights U-value (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-20",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Thermal Transmittance: Skylights U-value (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-21",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Maximum Solar Heat Gain Coefficient",
+        "source": "BG",
+        "source_ref": "REQ-PAS-22",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Maximum Solar Heat Gain Coefficient (%) (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-23",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Maximum Solar Heat Gain Coefficient (%) (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-24",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Maximum Air Leakage",
+        "source": "BG",
+        "source_ref": "REQ-PAS-25",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Maximum Air Leakage (m3/hr.m2) (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-26",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Maximum Air Leakage (m3/hr.m2) (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-PAS-27",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Natural Ventilation Coverage",
+        "source": "BG",
+        "source_ref": "REQ-PAS-28",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Space Heating Coverage",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Water Heating Coverage",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Space Cooling Coverage",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "HVAC and Water Heating Enforcement Mechanisms (Number)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "HVAC and Water Heating Enforcement Mechanisms: HVAC Plan",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-05",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "HVAC and Water Heating Enforcement Mechanisms: Heating / Cooling Demand Calculations",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-06",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "HVAC and Water Heating Enforcement Mechanisms: Efficiency of Heating and Cooling Equipments and Controls",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-07",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "HVAC and Water Heating Enforcement Mechanisms: Efficiency of Water Heating Equipment and Controls",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-08",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Fossil Fuel Boiler / Furnace",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-09",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Fossil Fuel Boiler Energy Efficiency (%) (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-10",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Fossil Fuel Boiler Energy Efficiency (%) (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-11",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Fossil Fuel Furnace Energy Efficiency (%) (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-12",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Fossil Fuel Furnace Energy Efficiency (%) (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-13",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Electrical Boiler / Furnace",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-14",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Electrical Boiler Energy Efficiency (%) (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-15",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Electrical Boiler Energy Efficiency (%) (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-16",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Electrical Furnace Energy Efficiency (%) (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-17",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Electrical Furnace Energy Efficiency (%) (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-18",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Heat Pump (Heating) Coverage",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-19",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Heat Pump (Heating) COP (Wh/Wh) (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-20",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Heat Pump (Heating) COP (Wh/Wh) (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-21",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Fossil Fuel Water Heater ",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-22",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Fossil Fuel Water Heater EF (%) (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-23",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Fossil Fuel Water Heater EF (%) (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-24",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Electric Water Heater",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-25",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Electric Water Heater EF (%) (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-26",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Electric Water Heater EF (%) (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-27",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Central AC System EER/SEER Coverage",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-28",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Central AC System EER (Wh/Wh) (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-29",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Central AC System EER (Wh/Wh) (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-30",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Split AC System EER/SEER Coverage",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-31",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Split AC System EER (Wh/Wh) (Residential)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-32",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Split AC System EER (Wh/Wh) (Commercial)",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-33",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Heat Pump (Cooling) Coverage",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-34",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Fan Coverage",
+        "source": "BG",
+        "source_ref": "REQ-HVAC-35",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Lighting Coverage",
+        "source": "BG",
+        "source_ref": "REQ-LIGH-01",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Lighting Enforcement Mechanisms (Number)",
+        "source": "BG",
+        "source_ref": "REQ-LIGH-02",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Maximum Wattage or Lighting Allowances (Outdoor)",
+        "source": "BG",
+        "source_ref": "REQ-LIGH-03",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Maximum Wattage or Lighting Allowances (Indoor)",
+        "source": "BG",
+        "source_ref": "REQ-LIGH-04",
+        "description": null,
+        "availability": null
+      },
+      {
+        "id": "BG",
+        "name": "Luminary Efficacy (lm/W)",
+        "source": "BG",
+        "source_ref": "REQ-LIGH-05",
+        "description": null,
+        "availability": null
+      }
+    ],
+    "Services": [
+      {
+        "id": "SSBRR",
+        "name": "Plumbing and sanitary systems",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The buildiing code contains some provisions related to plumbing and sanitary systems.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Electrical systems",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The buildiing code contains some provisions related to electrical systems.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Elevators, escalators, and lifts",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The buildiing code contains some provisions related to elevators, escalators and lifts.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Heating, ventilating, and air conditioning",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.6",
+        "description": "The buildiing code contains some provisions related to heating, ventilating, and air conditioning systems.",
+        "availability": null
+      }
+    ]
+  },
+  "Materials": {
+    "Materials Disposal": [
+      {
+        "id": "BR_1_2_1_3_1",
+        "name": "Does the regulatory framework require permits for the handling, removal, and disposal of regulated construction materials that pose health risks?",
+        "source": "BR",
+        "source_ref": "1.2.1.3.",
+        "description": "Does the regulatory framework require permits for the handling, removal, and disposal of regulated construction materials that pose health risks?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_1_4_1",
+        "name": "Asbestos are regulated",
+        "source": "BR",
+        "source_ref": "1.2.1.4. - 1",
+        "description": "Which of the below materials are regulated? - 1. Asbestos",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_4_2",
+        "name": "Lead-containing pipes, components, paints are required to be inspected/tested by law are regulated",
+        "source": "BR",
+        "source_ref": "1.2.1.4. - 2",
+        "description": "Which of the below materials are regulated? - 2. Lead-containing pipes, components, paints",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_4_3",
+        "name": "Mercury-containing fluorescent lamps, thermostats, and electric devices are regulated",
+        "source": "BR",
+        "source_ref": "1.2.1.4. - 3",
+        "description": "Which of the below materials are regulated? - 3. Mercury-containing fluorescent lamps, thermostats, and electric devices",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_4_4",
+        "name": "Polychlorinated biphenyls in electric transformers, fluorescent light ballasts, caulk, and masonry joints are regulated",
+        "source": "BR",
+        "source_ref": "1.2.1.4. - 4",
+        "description": "Which of the below materials are regulated? - 4. Polychlorinated biphenyls in electric transformers, fluorescent light ballasts, caulk, and masonry joints",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_8_1",
+        "name": "Asbestos are required to be inspected/tested by law",
+        "source": "BR",
+        "source_ref": "1.2.1.8. - 1",
+        "description": "Which materials are required to be inspected/tested by law? - 1. Asbestos",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_8_2",
+        "name": "Lead-containing pipes, components, paints are required to be inspected/tested by law",
+        "source": "BR",
+        "source_ref": "1.2.1.8. - 2",
+        "description": "Which materials are required to be inspected/tested by law? - 2. Lead-containing pipes, components, paints",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_8_3",
+        "name": "Mercury-containing fluorescent lamps, thermostats, and electric devices are required to be inspected/tested by law",
+        "source": "BR",
+        "source_ref": "1.2.1.8. - 3",
+        "description": "Which materials are required to be inspected/tested by law? - 3. Mercury-containing fluorescent lamps, thermostats, and electric devices",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_8_4",
+        "name": "Polychlorinated biphenyls in electric transformers, fluorescent light ballasts, caulk, and masonry joints are required to be inspected/tested by law",
+        "source": "BR",
+        "source_ref": "1.2.1.8. - 4",
+        "description": "Which materials are required to be inspected/tested by law? - 4. Polychlorinated biphenyls in electric transformers, fluorescent light ballasts, caulk, and masonry joints",
+        "availability": "unmapped"
+      }
+    ]
+  },
+  "Planning and Zoning": {
+    "Planning and Zoning": [
+      {
+        "id": "BR_1_2_3_2_1",
+        "name": "Countries with a map that identify areas allocated to residential, commercial, agricultural, recreational, public/institutional, mixed use",
+        "source": "BR",
+        "source_ref": "1.2.3.2.",
+        "description": "Are any of the following planning tools mandatory requirements prior to the formal development of land? - 2. Maps that identify areas allocated to residential, commercial, agricultural, recreational, public/institutional, mixed use",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_3_3_1",
+        "name": "Countries with a map that identify Areas in which Building is Not Permitted due to Natural Hazards",
+        "source": "BR",
+        "source_ref": "1.2.3.3.",
+        "description": "Are any of the following planning tools mandatory requirements prior to the formal development of land? - 3. Hazard maps that identify areas in which building is not permitted due to natural hazards",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_3_4_1",
+        "name": "Countries with hazard maps that identify minimum separation between residential and hazardous occupancies",
+        "source": "BR",
+        "source_ref": "1.2.3.4.",
+        "description": "Are any of the following planning tools mandatory requirements prior to the formal development of land? - 4. Hazard maps that identify minimum separation between residential and hazardous occupancies",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_3_1_1",
+        "name": "Countries with requirements for trunk infrastructure service access (water, electricity, sanitation)",
+        "source": "BR",
+        "source_ref": "1.2.3.1.",
+        "description": "Are any of the following planning tools mandatory requirements prior to the formal development of land? - 1. Requirements for trunk infrastructure service access (water, electricity, sanitation)",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_3_5_1",
+        "name": "Countries with maps that identify areas in which building is not permitted in relation to natural resources",
+        "source": "BR",
+        "source_ref": "1.2.3.5.",
+        "description": "Are any of the following planning tools mandatory requirements prior to the formal development of land? - 5. Maps that identify areas in which building is not permitted in relation to natural resources",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_3_2_6_1",
+        "name": "Countries with an updated  City Master Plan (for the main city)",
+        "source": "BR",
+        "source_ref": "2.3.2.6.",
+        "description": "Updated City Master Plan/Zoning Plan",
+        "availability": "mapped"
+      }
+    ]
+  },
+  "Compliance Mechanisms": {
+    "Professional Registration": [
+      {
+        "id": "BR_1_2_1_10_2",
+        "name": "Having a minimum number of years of practical experience is legally required to conduct technical supervisions/inspections of construction projects?",
+        "source": "BR",
+        "source_ref": "1.2.1.10. - 2",
+        "description": "What type of qualification is legally required to conduct technical supervisions/inspections of construction projects? - 2. Having a minimum number of years of practical experience",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_1_10_3",
+        "name": "Being a registered member of the order (association) of architects or civil engineers  is legally required to conduct technical supervisions/inspections of construction projects?",
+        "source": "BR",
+        "source_ref": "1.2.1.10. - 3",
+        "description": "What type of qualification is legally required to conduct technical supervisions/inspections of construction projects? - 3. Being a registered member of the order (association) of architects or civil engineers",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_1_10_4",
+        "name": "Having to pass a qualification examis legally required to conduct technical supervisions/inspections of construction projects?",
+        "source": "BR",
+        "source_ref": "1.2.1.10. - 4",
+        "description": "What type of qualification is legally required to conduct technical supervisions/inspections of construction projects? - 4. Having to pass a qualification exam",
+        "availability": "mapped"
+      },
+      {
+        "id": "GABC_054",
+        "name": "Professional_x000D_ certification and_x000D_ registration system",
+        "source": "GABC",
+        "source_ref": "Section 11.2.1",
+        "description": "The country has a professional certification and registration mechanism including a clear and mandatory registration system for all professionals in the construction industry and a classification and qualification system exists for contractors.",
+        "availability": "external"
+      }
+    ],
+    "Building Control": [
+      {
+        "id": "BR_1_2_1_10_1",
+        "name": "Being an accredited architect or engineer is legally required to conduct technical supervisions/inspections of construction projects?",
+        "source": "BR",
+        "source_ref": "1.2.1.10. - 1",
+        "description": "What type of qualification is legally required to conduct technical supervisions/inspections of construction projects? - 1. Being an accredited architect or engineer",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_3_2_8_1",
+        "name": "How is adherence to zoning regulations verified before submitting building permit applications in the measured city ?",
+        "source": "BR",
+        "source_ref": "2.3.2.8.",
+        "description": "How is adherence to zoning regulations verified before submitting building permit applications in the measured city ?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_3_2_7_1",
+        "name": "Are there clear defined steps to modifying the zoning/land use plan in the measured city?",
+        "source": "BR",
+        "source_ref": "2.3.2.7.",
+        "description": "Are there clear defined steps to modifying the zoning/land use plan in the measured city?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_1_6_1",
+        "name": "Are technical inspections for structural safety (if any) required by law to be carried out during construction?",
+        "source": "BR",
+        "source_ref": "1.2.1.6. - 1",
+        "description": "What types of technical inspections for structural safety (if any) are required by law to be carried out during construction? - 1. None",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_6_2",
+        "name": "Are random/unscheduled inspections required by law to be carried out during construction?",
+        "source": "BR",
+        "source_ref": "1.2.1.6. - 2",
+        "description": "What types of technical inspections for structural safety (if any) are required by law to be carried out during construction? - 2. Random/unscheduled inspections",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_6_3",
+        "name": "Are Phased inspections required by law to be carried out during construction?",
+        "source": "BR",
+        "source_ref": "1.2.1.6. - 3",
+        "description": "What types of technical inspections for structural safety (if any) are required by law to be carried out during construction? - 3. Phased inspections",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_1_6_4",
+        "name": "Are Risk-based type inspections required by law to be carried out during construction?",
+        "source": "BR",
+        "source_ref": "1.2.1.6. - 4",
+        "description": "What types of technical inspections for structural safety (if any) are required by law to be carried out during construction? - 4. Risk-based type inspections",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_1_5_1",
+        "name": "According to the law, is the public agency (i.e., technical department of the municipality) responsible for verifying compliance of building plans with existing building regulations? ",
+        "source": "BR",
+        "source_ref": "1.2.1.5. - 1",
+        "description": "According to the law, who is responsible for verifying compliance of building plans with existing building regulations? - 1. Public agency (i.e., technical department of the municipality)",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_1_5_2",
+        "name": "According to the law, is a private and external firms of certified architects and/or civil engineers (third party professionals to be hired by the builder) responsible for verifying compliance of building plans with existing building regulations?",
+        "source": "BR",
+        "source_ref": "1.2.1.5. - 2",
+        "description": "According to the law, who is responsible for verifying compliance of building plans with existing building regulations? - 2. Private and external firms of certified architects and/or civil engineers (third party professionals to be hired by the builder)",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_1_5_3",
+        "name": "According to the law, the architect/engineer who prepared the plans shall submit an attestation to the permit-issuing agency ?",
+        "source": "BR",
+        "source_ref": "1.2.1.5. - 3",
+        "description": "According to the law, who is responsible for verifying compliance of building plans with existing building regulations? - 3. The architect/engineer who prepared the plans submits an attestation to the permit-issuing agency",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_1_5_4",
+        "name": "According to the law, is a Public agency (somebody other than an architect or engineer) responsible for verifying compliance of building plans with existing building regulations?",
+        "source": "BR",
+        "source_ref": "1.2.1.5. - 4",
+        "description": "According to the law, who is responsible for verifying compliance of building plans with existing building regulations? - 4. Public agency: somebody other than an architect or engineer",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_9_1",
+        "name": "Is liability for structural defects in the measured city defined by law once a building is in use or occupied?",
+        "source": "BR",
+        "source_ref": "1.2.1.9.",
+        "description": "Is liability for structural defects in the measured city defined by law once a building is in use or occupied?",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_9_2",
+        "name": "If there are structural problems in a building once it is in use, are the responsible architects or engineers legally held liable according to the law?",
+        "source": "BR",
+        "source_ref": "1.2.1.9.",
+        "description": "If there are structural problems in a building once it is in use, are the responsible architects or engineers legally held liable according to the law?",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_9_3",
+        "name": "According to the law, is the professional or agency conducting technical inspections during construction held liable for structural defects or problems once the building is in use?",
+        "source": "BR",
+        "source_ref": "1.2.1.9.",
+        "description": "According to the law, is the professional or agency conducting technical inspections during construction held liable for structural defects or problems once the building is in use?",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_1_2_1_9_4",
+        "name": "According to the law, is the construction company held liable for structural defects or problems once the building is in use?",
+        "source": "BR",
+        "source_ref": "1.2.1.9.",
+        "description": "According to the law, is the construction company held liable for structural defects or problems once the building is in use?",
+        "availability": "unmapped"
+      },
+      {
+        "id": "SSBRR",
+        "name": "Permitting requirements for changes to existing buildings.",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.5",
+        "description": "Are permits required for changes to existing buildings?",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Types of inspections: random inspections",
+        "source": "SSBRR",
+        "source_ref": "Section 3.2.3",
+        "description": "Random inspections are included as part of building control requirements/activities.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Types of inspections: phased inspections for foundations/plinth/floors",
+        "source": "SSBRR",
+        "source_ref": "Section 3.2.3",
+        "description": "Phased inspections for foundations/plinths/floors are included as part of building control requirements/activities.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Types of inspections: inspection before pouring concrete",
+        "source": "SSBRR",
+        "source_ref": "Section 3.2.3",
+        "description": "Inspections before concrete pours are included as part of building control requirements/activities.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Types of inspections: risk-based inspections",
+        "source": "SSBRR",
+        "source_ref": "Section 3.2.3",
+        "description": "Risk-based inspections are included as part of building control requirements/activities.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Types of inspections: inspection of construction materials",
+        "source": "SSBRR",
+        "source_ref": "Section 3.2.3",
+        "description": "Inspections related to quality and type of construction materials are included as part of building control requirements/activities.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Types of inspections: electrical inspections",
+        "source": "SSBRR",
+        "source_ref": "Section 3.2.3",
+        "description": "Electrical inspections are included as part of building control requirements/activities.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Types of inspections: mechanical inspections",
+        "source": "SSBRR",
+        "source_ref": "Section 3.2.3",
+        "description": "Mechanical equipment and system inspections are included as part of building control requirements/activities.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Types of inspections: plumbing inspections",
+        "source": "SSBRR",
+        "source_ref": "Section 3.2.3",
+        "description": "Plumbing systems inspections are included as part of building control requirements/activities.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Types of inspections: fire safety inspections",
+        "source": "SSBRR",
+        "source_ref": "Section 3.2.3",
+        "description": "Fire safety inspections are included as part of building control requirements/activities.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Types of inspections: health and safety",
+        "source": "SSBRR",
+        "source_ref": "Section 3.2.3",
+        "description": " Inspections related to health and safety on site are included as part of building control requirements/activities.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Types of inspections: accessibility",
+        "source": "SSBRR",
+        "source_ref": "Section 3.2.3",
+        "description": "Inspections related to universal accessibility features are included as part of building control requirements/activities.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Types of inspections: energy performance audits/assessments",
+        "source": "SSBRR",
+        "source_ref": "Section 3.2.3",
+        "description": "Energy performance audits and/or assessments are included as part of building control requirements/activities.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Established building control processes",
+        "source": "GABC",
+        "source_ref": "Section 11.2.1",
+        "description": "The building control processes are clearly defined in any regulations or government documents with a complete_x000D_ and detailed framework_x000D_ defining the building_x000D_ control processes.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Optimized process",
+        "source": "GABC",
+        "source_ref": "Section 11.2.1",
+        "description": "The building control process integrates a tiered system of building categories to determine application requirements and allocate human resources. There is a clear categorization system within the building control regulations that introduces clearly differentiated requirements and processes for different categories of buildings based on parameters such as height, total size, and so forth.",
+        "availability": null
+      },
+      {
+        "id": "GABC",
+        "name": "Defined building _x000D_inspection _x000D_framework",
+        "source": "GABC",
+        "source_ref": "Section 11.2.1",
+        "description": "The building control framework integrates inspections by the authority in charge during the construction process. In particular, regulations have defined a clear inspections framework, setting out who is in charge of site visits and when, with responsibilities clearly stated.",
+        "availability": null
+      }
+    ],
+    "Transparency and Access to Information": [
+      {
+        "id": "BR_2_3_2_1_1",
+        "name": "Are planning and building control regulations publicly accessible?",
+        "source": "BR",
+        "source_ref": "2.3.2.1.",
+        "description": "Are planning and building control regulations publicly accessible?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_2_2_1_1",
+        "name": "Are spatial plans and zoning requirements available to all stakeholders in the measured city in the form of a Geographic Information System (GIS) or other spatial data platforms?",
+        "source": "BR",
+        "source_ref": "2.2.2.1.",
+        "description": "Are spatial plans and zoning requirement available to all stakeholders in the measured city in the form of a Geographic Information System (GIS) or other spatial data platforms?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_2_1_3_1",
+        "name": "Is there a Geographic Information System used by the land administration agency in the measured city?",
+        "source": "BR",
+        "source_ref": "2.2.1.3.",
+        "description": "Is there a Geographic Information System used by the land administration agency in the measured city?",
+        "availability": "unmapped"
+      },
+      {
+        "id": "BR_2_2_2_2_1",
+        "name": "Are the GIS and/or national spatial platforms integrated between the permit-issuing agency and other stakeholder agencies (i.e., cadaster, land registries, municipal departments, utility service providers, etc.)?",
+        "source": "BR",
+        "source_ref": "2.2.2.2.",
+        "description": "Are the GIS and/or national spatial platforms integrated between the permit-issuing agency and other stakeholder agencies (i.e., cadaster, land registries, municipal departments, utility service providers, etc.)?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_3_2_2_1",
+        "name": "List of required pre-approvals of the drawings/plans by the relevant agencies (i.e., electrical, water, sewerage, environmental etc.)",
+        "source": "BR",
+        "source_ref": "2.3.2.2. - 1",
+        "description": "Which of the following information to obtain building related permits are available online to the general public? - 1. All required pre-approvals of the drawings/plans by the relevant agencies (i.e., electrical, water, sewerage, environmental etc.)",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_3_2_2_2",
+        "name": "List of required documents necessary to obtain a building permit (i.e., land ownership certificate, types of drawings and plans, etc.)",
+        "source": "BR",
+        "source_ref": "2.3.2.2. - 2",
+        "description": "Which of the following information to obtain building related permits are available online to the general public? - 2. List of required documents necessary to obtain a building permit (i.e., land ownership certificate, types of drawings and plans, etc.)",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_3_2_2_3",
+        "name": "List of required documents necessary to obtain an occupancy permit",
+        "source": "BR",
+        "source_ref": "2.3.2.2. - 3",
+        "description": "Which of the following information to obtain building related permits are available online to the general public? - 3. List of required documents necessary to obtain an occupancy permit",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_3_2_3_1",
+        "name": "Are the requirements to obtain any type of building related permits published online?",
+        "source": "BR",
+        "source_ref": "2.3.2.3.",
+        "description": "Are the requirements to obtain any type of building related permits published online?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_3_2_5_1",
+        "name": "Are there official, updated and publicly available online statistics tracking the number of issued building permits?",
+        "source": "BR",
+        "source_ref": "2.3.2.5.",
+        "description": "Are there official, updated and publicly available online statistics tracking the number of issued building permits?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_1_4_1_1",
+        "name": "Is there an online platform for issuing building authorizations in the measured city?",
+        "source": "BR",
+        "source_ref": "2.1.4.1.",
+        "description": "Is there an online platform for issuing building authorizations in the measured city?",
+        "availability": "derived"
+      },
+      {
+        "id": "BR_2_1_4_3_1",
+        "name": "Is there an electronic system is available for submitting and issuing Building permits",
+        "source": "BR",
+        "source_ref": "2.1.4.3. - 1",
+        "description": "Please indicate whether or not an electronic system allows for submitting and issuing each of these permits: - 1. Building permits",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_1_4_3_2",
+        "name": "Is there an electronic system is available for submitting and issuing Occupancy permits",
+        "source": "BR",
+        "source_ref": "2.1.4.3. - 2",
+        "description": "Please indicate whether or not an electronic system allows for submitting and issuing each of these permits: - 2. Occupancy permits",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_1_4_2_1",
+        "name": "Does the platform allow Online payments",
+        "source": "BR",
+        "source_ref": "2.1.4.2. - 1",
+        "description": "Please indicate if the online platform allows these electronic features: - 1. Online payments",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_1_4_2_2",
+        "name": "Does the platform allow Online communication",
+        "source": "BR",
+        "source_ref": "2.1.4.2. - 2",
+        "description": "Please indicate if the online platform allows these electronic features: - 2. Online communication",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_1_4_2_3",
+        "name": "Does the platform allow Online notification",
+        "source": "BR",
+        "source_ref": "2.1.4.2. - 3",
+        "description": "Please indicate if the online platform allows these electronic features: - 3. Online notification",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_1_4_2_4",
+        "name": "Does the platform allow Online submission",
+        "source": "BR",
+        "source_ref": "2.1.4.2. - 4",
+        "description": "Please indicate if the online platform allows these electronic features: - 4. Online submission",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_1_4_2_5",
+        "name": "Does the platform allow auto-generated checklist of requirements for each step of plan approval",
+        "source": "BR",
+        "source_ref": "2.1.4.2. - 5",
+        "description": "Please indicate if the online platform allows these electronic features: - 5. Auto-generated checklist of requirements for each step of plan approval",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_2_3_2_4_1",
+        "name": "Is the applicable fee schedule for all types of construction available online and up to date?",
+        "source": "BR",
+        "source_ref": "2.3.2.4.",
+        "description": "Is the applicable fee schedule for all types of construction available online and up to date?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_3_2_1_1_1",
+        "name": "How many days did it take to obtain a construction-related permit from the day of the application to the day the permit was granted?",
+        "source": "BR",
+        "source_ref": "3.2.1.1.",
+        "description": "How many days did it take to obtain a construction-related permit from the day of the application to the day the permit was granted?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_3_2_2_1_1",
+        "name": "What is the total time to complete the entire process to obtain a building permit for a commercial property - office building type (calendar days)?",
+        "source": "BR",
+        "source_ref": "3.2.2.1.",
+        "description": "What is the total time to complete the entire process to obtain a building permit for a commercial property - office building type (calendar days)?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_3_2_3_1_1",
+        "name": "What is the total cost to complete the entire process of obtaining both a building permit for a commercial property - office building type (in local currency)?",
+        "source": "BR",
+        "source_ref": "3.2.3.1.",
+        "description": "What is the total cost to complete the entire process of obtaining both a building permit for a commercial property - office building type (in local currency)?",
+        "availability": "mapped"
+      },
+      {
+        "id": "SSBRR",
+        "name": "Availability of building design regulations",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.4",
+        "description": "Building design regulations are available online and for free.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Availability of planning and permitting regulations",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.4",
+        "description": "Regulations related to planning and building permitting are available online and for free.",
+        "availability": null
+      },
+      {
+        "id": "SSBRR",
+        "name": "Availability of information on building control processes for applicants",
+        "source": "SSBRR",
+        "source_ref": "Section 3.1.4",
+        "description": "Applicants can access information related to building control processes online and for free.",
+        "availability": null
+      },
+      {
+        "id": "GABC_055",
+        "name": "Accessibility of _x000D_building control _x000D_regulations and _x000D_information on_x000D_ processes",
+        "source": "GABC",
+        "source_ref": "Section 11.2.1",
+        "description": "The information regarding the building control processes is clearly available to the public through an official website or websites. All the needed information_x000D_is available online _x000D_through official websites _x000D_(at central and/or local _x000D_level). The information is _x000D_complete, clear and easy _x000D_to obtain.",
+        "availability": "external"
+      },
+      {
+        "id": "GABC_056",
+        "name": "An online approval system is available in the country",
+        "source": "GABC",
+        "source_ref": "Section 11.2.1",
+        "description": "There is an online approval system available in the country orin the main cities of the country allowing the users to apply online, and follow up their application (including during the inspection phase) until issuance of the occupancy certificate.",
+        "availability": "external"
+      }
+    ],
+    "Dispute Resolution": [
+      {
+        "id": "SSBRR_025",
+        "name": "Independent dispute resolution mechanism",
+        "source": "SSBRR",
+        "source_ref": "Section 3.3",
+        "description": "An independent dispute resolution mechansim related to building control processes and decisions is in place in the country (such as an independent tribunal or board).",
+        "availability": "external"
+      },
+      {
+        "id": "GABC_057",
+        "name": "Dispute resolution _x000D_mechanism",
+        "source": "GABC",
+        "source_ref": "Section 11.2.1",
+        "description": "The building control framework integrates and details a dispute resolution mechanism. Regulations define clearly the appeal process and give a clear framework for an alternative dispute resolution (ADR) mechanism.",
+        "availability": "external"
+      },
+      {
+        "id": "BR_2_1_4_4_1",
+        "name": "Can final decisions on building permits be disputed online?",
+        "source": "BR",
+        "source_ref": "2.1.4.4.",
+        "description": "Can final decisions on building permits be disputed online?",
+        "availability": "mapped"
+      },
+      {
+        "id": "BR_1_2_1_11_1",
+        "name": "Does the building regulation /code/standard have any provisions to dispute the decision of the building authority?",
+        "source": "BR",
+        "source_ref": "1.2.1.11.",
+        "description": "Does the building regulation /code/standard have any provisions to dispute the decision of the building authority?",
+        "availability": "mapped"
+      }
+    ]
+  }
+}
