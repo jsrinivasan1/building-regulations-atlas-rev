@@ -4,286 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Building Regulations Atlas</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
-    
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; }
+        .header { background: #002244; color: white; padding: 1rem 2rem; }
+        .header h1 { font-size: 1.5rem; }
+        .header span { font-size: 0.8rem; opacity: 0.8; }
+        #map { height: 600px; width: 100%; }
+        .legend { position: absolute; bottom: 30px; right: 10px; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000; }
+        .legend h4 { margin-bottom: 10px; font-size: 14px; }
+        .legend-item { display: flex; align-items: center; gap: 8px; margin: 5px 0; font-size: 13px; }
+        .legend-color { width: 20px; height: 20px; border-radius: 50%; border: 2px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+        .info { padding: 2rem; max-width: 1000px; margin: 0 auto; }
+        .footer { background: #002244; color: white; padding: 1.5rem; text-align: center; }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo-section">
-                <div class="wb-logo">
-                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 20C12 15.5817 15.5817 12 20 12C24.4183 12 28 15.5817 28 20" stroke="currentColor" stroke-width="2"/>
-                        <path d="M8 20H32" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M20 8V32" stroke="currentColor" stroke-width="1.5"/>
-                    </svg>
-                </div>
-                <div class="header-titles">
-                    <span class="header-subtitle">World Bank Group</span>
-                    <h1 class="header-title">Building Regulations Atlas</h1>
-                </div>
-            </div>
-            <nav class="header-nav">
-                <a href="#map-section" class="nav-link">Map</a>
-                <a href="#about-section" class="nav-link">About</a>
-                <a href="#sources-section" class="nav-link">Data Sources</a>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <p class="hero-description">
-                The Building Regulations Atlas collates data from several World Bank Group resources on topics related to planning, design, and building control regulations and aspects of the wider building regulatory environment in selected cities and countries.
-            </p>
-        </div>
-    </section>
+<div class="header">
+    <span>World Bank Group</span>
+    <h1>Building Regulations Atlas</h1>
+</div>
 
-    <!-- Filter Section -->
-    <section class="filter-section" id="filter-section">
-        <div class="filter-container">
-            <!-- Country Filter -->
-            <div class="filter-group">
-                <label class="filter-label">
-                    <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                        <circle cx="12" cy="10" r="3"/>
-                    </svg>
-                    Country
-                </label>
-                <select id="country-select" class="filter-select">
-                    <option value="">All Countries</option>
-                </select>
-            </div>
+<div id="map"></div>
 
-            <!-- Topic Filter -->
-            <div class="filter-group filter-topics">
-                <label class="filter-label">
-                    <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-                        <polyline points="2 17 12 22 22 17"/>
-                        <polyline points="2 12 12 17 22 12"/>
-                    </svg>
-                    Regulatory Topics
-                </label>
-                <div class="topic-checkboxes">
-                    <div class="topic-item">
-                        <input type="checkbox" id="topic-planning" value="Planning and Zoning" checked>
-                        <label for="topic-planning">
-                            <span class="topic-icon planning-icon">📍</span>
-                            Planning and Zoning
-                        </label>
-                    </div>
-                    
-                    <div class="topic-item has-subtopics">
-                        <input type="checkbox" id="topic-design" value="Building Design" checked>
-                        <label for="topic-design">
-                            <span class="topic-icon design-icon">🏗️</span>
-                            Building Design
-                        </label>
-                        <button class="subtopic-toggle" data-target="design-subtopics">▼</button>
-                        <div class="subtopics" id="design-subtopics">
-                            <label><input type="checkbox" value="General Provisions" checked> General Provisions</label>
-                            <label><input type="checkbox" value="Building Classification" checked> Building Classification</label>
-                            <label><input type="checkbox" value="Structural Resilience" checked> Structural Resilience</label>
-                            <label><input type="checkbox" value="Fire Safety" checked> Fire Safety</label>
-                            <label><input type="checkbox" value="Green Buildings" checked> Green Buildings</label>
-                            <label><input type="checkbox" value="Universal Accessibility" checked> Universal Accessibility</label>
-                            <label><input type="checkbox" value="Services" checked> Services</label>
-                        </div>
-                    </div>
-                    
-                    <div class="topic-item">
-                        <input type="checkbox" id="topic-materials" value="Materials" checked>
-                        <label for="topic-materials">
-                            <span class="topic-icon materials-icon">🧱</span>
-                            Materials
-                        </label>
-                    </div>
-                    
-                    <div class="topic-item has-subtopics">
-                        <input type="checkbox" id="topic-compliance" value="Compliance Mechanisms" checked>
-                        <label for="topic-compliance">
-                            <span class="topic-icon compliance-icon">✓</span>
-                            Compliance Mechanisms
-                        </label>
-                        <button class="subtopic-toggle" data-target="compliance-subtopics">▼</button>
-                        <div class="subtopics" id="compliance-subtopics">
-                            <label><input type="checkbox" value="Building Control" checked> Building Control</label>
-                            <label><input type="checkbox" value="Transparency and Access to Information" checked> Transparency & Access to Information</label>
-                            <label><input type="checkbox" value="Dispute Resolution" checked> Dispute Resolution</label>
-                            <label><input type="checkbox" value="Professional Registration" checked> Professional Registration</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="legend">
+    <h4>Data Availability</h4>
+    <div class="legend-item"><div class="legend-color" style="background:#1a5a9c;"></div> Full Data</div>
+    <div class="legend-item"><div class="legend-color" style="background:#4a9fd4;"></div> B-READY Data</div>
+    <div class="legend-item"><div class="legend-color" style="background:#ccc;"></div> Limited Data</div>
+</div>
 
-            <!-- Apply Button -->
-            <button id="apply-filters" class="apply-btn">Apply Filters</button>
-        </div>
-    </section>
+<div class="info">
+    <h2>About</h2>
+    <p>Click on any country marker to view building regulation data.</p>
+</div>
 
-    <!-- Map Section -->
-    <section class="map-section" id="map-section">
-        <div class="map-container">
-            <div id="map"></div>
-            <div class="map-legend">
-                <h4>Data Availability</h4>
-                <div class="legend-item">
-                    <span class="legend-color" style="background: #1a5a9c;"></span>
-                    <span>B-READY + BRR Report</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-color" style="background: #4a9fd4;"></span>
-                    <span>B-READY Only</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-color" style="background: #cccccc;"></span>
-                    <span>No Data</span>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="footer">
+    © 2026 World Bank Group
+</div>
 
-    <!-- About Section -->
-    <section class="about-section" id="about-section">
-        <div class="about-container">
-            <h2 class="section-title">About the Atlas</h2>
-            <p class="about-text">
-                The Building Regulations Atlas collates data from several World Bank and IFC resources on topics related to planning, design, and building control regulations and aspects of the wider building regulatory environment in selected cities and countries. The Atlas covers four main regulatory topics and a number of sub-topics for building design regulations and compliance mechanisms. Users can select data by country or city, and/or by selected themes and indicator types. In addition to visualizing selected data on a map, detailed data can be exported as a .csv file or pdf.
-            </p>
-            
-            <div class="topics-overview">
-                <h3>Regulatory Topics Covered</h3>
-                <div class="topics-grid">
-                    <div class="topic-card">
-                        <div class="topic-card-icon">📍</div>
-                        <h4>Planning and Zoning</h4>
-                        <p>Land use maps, hazard zones, infrastructure requirements</p>
-                    </div>
-                    <div class="topic-card">
-                        <div class="topic-card-icon">🏗️</div>
-                        <h4>Building Design</h4>
-                        <p>General provisions, structural resilience, fire safety, green buildings, accessibility, services</p>
-                    </div>
-                    <div class="topic-card">
-                        <div class="topic-card-icon">🧱</div>
-                        <h4>Materials</h4>
-                        <p>Regulated materials, testing requirements, disposal</p>
-                    </div>
-                    <div class="topic-card">
-                        <div class="topic-card-icon">✓</div>
-                        <h4>Compliance Mechanisms</h4>
-                        <p>Building control, transparency, dispute resolution, professional registration</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// Wait for page to fully load
+window.onload = function() {
+    
+    // Country data
+    var countries = [
+        {code: "AGO", name: "Angola", lat: -12.5, lng: 18.5, hasReg: true, count: 45},
+        {code: "BEN", name: "Benin", lat: 9.3, lng: 2.3, hasReg: true, count: 52},
+        {code: "BWA", name: "Botswana", lat: -22.3, lng: 24.7, hasReg: true, count: 38},
+        {code: "BFA", name: "Burkina Faso", lat: 12.2, lng: -1.5, hasReg: true, count: 41},
+        {code: "CMR", name: "Cameroon", lat: 5.9, lng: 12.4, hasReg: true, count: 44},
+        {code: "CPV", name: "Cabo Verde", lat: 15.1, lng: -23.6, hasReg: true, count: 48},
+        {code: "CAF", name: "Central African Rep.", lat: 6.6, lng: 20.9, hasReg: false, count: 25},
+        {code: "TCD", name: "Chad", lat: 15.4, lng: 18.7, hasReg: true, count: 35},
+        {code: "COD", name: "DR Congo", lat: -4.0, lng: 21.8, hasReg: true, count: 55},
+        {code: "COG", name: "Congo", lat: -0.2, lng: 15.8, hasReg: true, count: 58},
+        {code: "GNQ", name: "Equatorial Guinea", lat: 1.6, lng: 10.3, hasReg: false, count: 22},
+        {code: "GMB", name: "Gambia", lat: 13.4, lng: -15.4, hasReg: true, count: 50},
+        {code: "GHA", name: "Ghana", lat: 7.9, lng: -1.0, hasReg: true, count: 65},
+        {code: "LSO", name: "Lesotho", lat: -29.6, lng: 28.2, hasReg: true, count: 48},
+        {code: "MDG", name: "Madagascar", lat: -18.9, lng: 46.9, hasReg: true, count: 52},
+        {code: "MLI", name: "Mali", lat: 17.6, lng: -4.0, hasReg: true, count: 55},
+        {code: "MUS", name: "Mauritius", lat: -20.3, lng: 57.6, hasReg: true, count: 68},
+        {code: "NAM", name: "Namibia", lat: -22.6, lng: 17.1, hasReg: true, count: 42},
+        {code: "RWA", name: "Rwanda", lat: -1.9, lng: 29.9, hasReg: true, count: 72},
+        {code: "SEN", name: "Senegal", lat: 14.5, lng: -14.5, hasReg: true, count: 58},
+        {code: "SYC", name: "Seychelles", lat: -4.7, lng: 55.5, hasReg: true, count: 62},
+        {code: "SLE", name: "Sierra Leone", lat: 8.5, lng: -11.8, hasReg: true, count: 38},
+        {code: "SSD", name: "South Sudan", lat: 7.9, lng: 30.0, hasReg: false, count: 18},
+        {code: "SWZ", name: "Eswatini", lat: -26.5, lng: 31.5, hasReg: true, count: 52},
+        {code: "TZA", name: "Tanzania", lat: -6.4, lng: 34.9, hasReg: true, count: 70},
+        {code: "TGO", name: "Togo", lat: 8.6, lng: 0.8, hasReg: true, count: 48}
+    ];
+    
+    // Initialize map
+    var map = L.map('map').setView([5, 20], 4);
+    
+    // Add tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+    
+    // Add markers
+    countries.forEach(function(c) {
+        var color = c.count >= 60 ? '#1a5a9c' : (c.count >= 40 ? '#4a9fd4' : '#cccccc');
+        
+        var marker = L.circleMarker([c.lat, c.lng], {
+            radius: 18,
+            fillColor: color,
+            color: '#ffffff',
+            weight: 3,
+            fillOpacity: 0.9
+        }).addTo(map);
+        
+        var popupContent = '<div style="min-width:200px;font-family:Arial;">' +
+            '<h3 style="margin:0 0 10px;color:#002244;">' + c.name + '</h3>' +
+            '<p><strong>Building Code:</strong> ' + (c.hasReg ? '<span style="color:green">✓ Yes</span>' : '<span style="color:red">✗ No</span>') + '</p>' +
+            '<p><strong>Data Points:</strong> ' + c.count + '</p>' +
+            '<button onclick="alert(\'Full profile for ' + c.name + ' - Feature coming soon!\')" style="width:100%;padding:10px;background:#002244;color:white;border:none;border-radius:4px;cursor:pointer;margin-top:10px;">View Full Profile</button>' +
+            '</div>';
+        
+        marker.bindPopup(popupContent);
+        
+        marker.on('mouseover', function() {
+            this.openPopup();
+            this.setStyle({fillOpacity: 1, weight: 4});
+        });
+        
+        marker.on('mouseout', function() {
+            this.setStyle({fillOpacity: 0.9, weight: 3});
+        });
+    });
+    
+    console.log('Map initialized with ' + countries.length + ' countries');
+};
+</script>
 
-    <!-- Data Sources Section -->
-    <section class="sources-section" id="sources-section">
-        <div class="sources-container">
-            <h2 class="section-title">Data Sources</h2>
-            <div class="sources-grid">
-                <div class="source-card">
-                    <h4>Business Ready (B-READY)</h4>
-                    <span class="source-year">2025</span>
-                    <p>Assesses the regulatory framework and public services directed at firms, and the efficiency with which regulatory framework and public services are combined in practice.</p>
-                </div>
-                <div class="source-card">
-                    <h4>Global Assessment of Building Codes</h4>
-                    <span class="source-year">2025</span>
-                    <p>Assesses the technical content of building codes for selected countries and related code implementation mechanisms.</p>
-                </div>
-                <div class="source-card">
-                    <h4>Building Green Global Dataset</h4>
-                    <span class="source-year">2025</span>
-                    <p>Contains data on building energy codes and standards applicable to new and existing buildings, as well as their enforcement mechanisms and levels of compliance.</p>
-                </div>
-                <div class="source-card">
-                    <h4>Building Regulations in Sub-Saharan Africa</h4>
-                    <span class="source-year">2023</span>
-                    <p>Contains data on building regulatory frameworks in Sub-Saharan African countries with a focus on building design regulations and their implementation.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Country Modal -->
-    <div id="country-modal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <div class="modal-header">
-                <h2 id="modal-country-name"></h2>
-                <div class="country-highlights" id="modal-highlights"></div>
-            </div>
-            <div class="modal-body" id="modal-body">
-                <!-- Country data will be loaded here -->
-            </div>
-            <div class="modal-footer">
-                <button class="download-btn" id="download-csv">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                        <polyline points="7 10 12 15 17 10"/>
-                        <line x1="12" y1="15" x2="12" y2="3"/>
-                    </svg>
-                    Download CSV
-                </button>
-                <button class="download-btn" id="download-pdf">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                    </svg>
-                    Download PDF
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logos">
-                <div class="footer-logo">
-                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 20C12 15.5817 15.5817 12 20 12C24.4183 12 28 15.5817 28 20" stroke="currentColor" stroke-width="2"/>
-                        <path d="M8 20H32" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M20 8V32" stroke="currentColor" stroke-width="1.5"/>
-                    </svg>
-                    <span>World Bank Group</span>
-                </div>
-                <div class="footer-logo">
-                    <span class="gfdrr-text">GFDRR</span>
-                    <span>Global Facility for Disaster Reduction and Recovery</span>
-                </div>
-            </div>
-            <div class="footer-links">
-                <a href="#">Privacy Notice</a>
-                <a href="#">Terms of Use</a>
-                <a href="#">Contact Us</a>
-            </div>
-            <div class="footer-copyright">
-                © 2026 World Bank Group, All Rights Reserved.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="js/app.js"></script>
 </body>
 </html>
