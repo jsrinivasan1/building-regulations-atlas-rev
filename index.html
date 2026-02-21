@@ -22,17 +22,17 @@
         .hero p { max-width: 900px; margin: 0 auto; font-size: 1.1rem; }
         
         .filter-section { background: var(--wb-gray-light); padding: 1.5rem 2rem; }
-        .filter-section .filter-container { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; }
+        .filter-container { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-end; }
         .filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
         .filter-label { font-weight: 600; font-size: 0.85rem; color: var(--wb-gray); text-transform: uppercase; }
-        .filter-select { padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; min-width: 250px; }
-        .topic-checkboxes { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-        .topic-item { display: flex; align-items: center; gap: 0.5rem; background: white; padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid #ddd; }
+        .filter-select { padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; min-width: 220px; }
+        .topic-checkboxes { display: flex; flex-wrap: nowrap; gap: 0.5rem; }
+        .topic-item { display: flex; align-items: center; gap: 0.4rem; background: white; padding: 0.5rem 0.75rem; border-radius: 4px; border: 1px solid #ddd; white-space: nowrap; }
         .topic-item:hover { border-color: var(--wb-blue-light); }
-        .topic-item input { width: 18px; height: 18px; accent-color: var(--wb-blue); cursor: pointer; }
-        .topic-item label { cursor: pointer; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; }
-        .topic-icon { font-size: 1.1rem; }
-        .apply-btn { padding: 0.75rem 2rem; background: var(--wb-blue); color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; align-self: flex-end; }
+        .topic-item input { width: 16px; height: 16px; accent-color: var(--wb-blue); cursor: pointer; }
+        .topic-item label { cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem; }
+        .topic-icon { font-size: 1rem; }
+        .apply-btn { padding: 0.75rem 1.5rem; background: var(--wb-blue); color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; }
         .apply-btn:hover { background: var(--wb-blue-light); }
         
         #mapDiv { height: 550px; width: 100%; }
@@ -248,7 +248,7 @@
             </select>
         </div>
         
-        <div class="filter-group" style="flex:1;">
+        <div class="filter-group">
             <label class="filter-label">📋 Regulatory Topics</label>
             <div class="topic-checkboxes">
                 <div class="topic-item">
@@ -347,16 +347,67 @@ const DATA = {"AGO": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_
 
 let map;
 let currentCountry = null;
+let markers = {}; // Store markers for filtering
 
 window.onload = function() {
     initMap();
     populateDropdown();
+    setupFilterListeners();
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
     document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
     
     // Set print date
     document.getElementById('print-date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 };
+
+function setupFilterListeners() {
+    // Update map when topic checkboxes change
+    document.querySelectorAll('.topic-item input').forEach(cb => {
+        cb.addEventListener('change', updateMapMarkers);
+    });
+}
+
+function getSelectedTopics() {
+    return Array.from(document.querySelectorAll('.topic-item input:checked')).map(cb => cb.value);
+}
+
+function countryHasDataForTopics(code, topics) {
+    const countryData = DATA[code] || {};
+    let count = 0;
+    
+    Object.entries(INDICATORS).forEach(([indId, indInfo]) => {
+        if (topics.includes(indInfo.main_topic) && countryData[indId]) {
+            count++;
+        }
+    });
+    
+    return count;
+}
+
+function updateMapMarkers() {
+    const selectedTopics = getSelectedTopics();
+    
+    Object.entries(markers).forEach(([code, marker]) => {
+        const dataCount = countryHasDataForTopics(code, selectedTopics);
+        
+        if (dataCount > 0) {
+            // Has data for selected topics - show normally
+            const color = dataCount >= 30 ? '#1a5a9c' : (dataCount >= 15 ? '#4a9fd4' : '#7fc4e8');
+            marker.setStyle({
+                fillColor: color,
+                fillOpacity: 0.9,
+                opacity: 1
+            });
+        } else {
+            // No data for selected topics - fade out
+            marker.setStyle({
+                fillColor: '#cccccc',
+                fillOpacity: 0.4,
+                opacity: 0.5
+            });
+        }
+    });
+}
 
 function initMap() {
     map = L.map('mapDiv').setView([5, 20], 4);
@@ -370,6 +421,9 @@ function initMap() {
         const marker = L.circleMarker([info.lat, info.lng], {
             radius: 18, fillColor: color, color: '#fff', weight: 3, fillOpacity: 0.9
         }).addTo(map);
+        
+        // Store marker for filtering
+        markers[code] = marker;
         
         const hasReg = DATA[code] && DATA[code]['BR_1_2_1_1_1'] === 'Yes';
         marker.bindPopup(`
@@ -414,7 +468,7 @@ function openModal(code) {
     
     // Group data by topic and subtopic
     const grouped = {};
-    const selectedTopics = Array.from(document.querySelectorAll('.topic-item input:checked')).map(cb => cb.value);
+    const selectedTopics = getSelectedTopics();
     
     Object.entries(INDICATORS).forEach(([indId, indInfo]) => {
         const val = countryData[indId];
