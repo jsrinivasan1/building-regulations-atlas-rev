@@ -4,95 +4,342 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Building Regulations Atlas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
+        :root {
+            --wb-blue: #002244;
+            --wb-blue-light: #1a5a9c;
+            --wb-blue-lighter: #4a9fd4;
+            --wb-gold: #f4a100;
+            --wb-gray: #58595b;
+            --wb-gray-light: #e8e8e8;
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: Arial, sans-serif; }
-        .header { background: #002244; color: white; padding: 1rem 2rem; }
-        .header h1 { font-size: 1.5rem; }
-        .header span { font-size: 0.8rem; opacity: 0.8; }
-        #map { height: 600px; width: 100%; }
-        .legend { position: absolute; bottom: 30px; right: 10px; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000; }
-        .legend h4 { margin-bottom: 10px; font-size: 14px; }
-        .legend-item { display: flex; align-items: center; gap: 8px; margin: 5px 0; font-size: 13px; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Source Sans Pro', Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1a1a1a; background: #fff; }
+        
+        /* Header */
+        .header { background: var(--wb-blue); color: white; padding: 0 2rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .header-titles span { font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; }
+        .header-titles h1 { font-size: 1.5rem; font-weight: 700; }
+        .header-nav { display: flex; gap: 2rem; }
+        .header-nav a { color: white; text-decoration: none; font-weight: 600; padding: 0.5rem 0; border-bottom: 2px solid transparent; }
+        .header-nav a:hover { border-bottom-color: var(--wb-gold); }
+        
+        /* Hero */
+        .hero { background: linear-gradient(135deg, var(--wb-blue) 0%, var(--wb-blue-light) 100%); color: white; padding: 2rem; text-align: center; }
+        .hero p { max-width: 900px; margin: 0 auto; font-size: 1.1rem; line-height: 1.7; }
+        
+        /* Filters */
+        .filter-section { background: var(--wb-gray-light); padding: 1.5rem 2rem; border-bottom: 1px solid #ddd; }
+        .filter-container { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; }
+        .filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .filter-label { font-weight: 600; font-size: 0.85rem; color: var(--wb-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+        .filter-select { padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; min-width: 250px; }
+        .filter-select:focus { outline: none; border-color: var(--wb-blue); box-shadow: 0 0 0 3px rgba(26,90,156,0.2); }
+        
+        .topic-checkboxes { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .topic-item { display: flex; align-items: center; gap: 0.5rem; background: white; padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid #ddd; cursor: pointer; }
+        .topic-item:hover { border-color: var(--wb-blue-light); }
+        .topic-item input { width: 18px; height: 18px; accent-color: var(--wb-blue); cursor: pointer; }
+        .topic-item label { cursor: pointer; font-size: 0.95rem; }
+        .topic-icon { font-size: 1.2rem; }
+        
+        .apply-btn { padding: 0.75rem 2rem; background: var(--wb-blue); color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; align-self: flex-end; }
+        .apply-btn:hover { background: var(--wb-blue-light); }
+        
+        /* Map */
+        .map-container { position: relative; }
+        #map { height: 550px; width: 100%; }
+        .map-legend { position: absolute; bottom: 30px; right: 20px; background: white; padding: 1rem 1.25rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 500; }
+        .map-legend h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--wb-gray); text-transform: uppercase; }
+        .legend-item { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; font-size: 0.9rem; }
         .legend-color { width: 20px; height: 20px; border-radius: 50%; border: 2px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
-        .info { padding: 2rem; max-width: 1000px; margin: 0 auto; }
-        .footer { background: #002244; color: white; padding: 1.5rem; text-align: center; }
+        
+        /* About Section */
+        .about-section { padding: 3rem 2rem; background: white; }
+        .about-container { max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 1.8rem; color: var(--wb-blue); margin-bottom: 1.5rem; text-align: center; }
+        .about-text { font-size: 1.1rem; line-height: 1.8; max-width: 900px; margin: 0 auto 2rem; text-align: center; color: var(--wb-gray); }
+        
+        .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .topic-card { background: var(--wb-gray-light); padding: 1.5rem; border-radius: 8px; text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
+        .topic-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .topic-card-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .topic-card h4 { font-size: 1.1rem; color: var(--wb-blue); margin-bottom: 0.5rem; }
+        .topic-card p { font-size: 0.9rem; color: var(--wb-gray); }
+        
+        /* Sources Section */
+        .sources-section { padding: 3rem 2rem; background: var(--wb-gray-light); }
+        .sources-container { max-width: 1200px; margin: 0 auto; }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .source-card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid var(--wb-blue); }
+        .source-card h4 { font-size: 1.1rem; color: var(--wb-blue); margin-bottom: 0.25rem; }
+        .source-year { display: inline-block; background: var(--wb-gold); color: #1a1a1a; font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 3px; margin-bottom: 0.75rem; }
+        .source-card p { font-size: 0.9rem; color: var(--wb-gray); line-height: 1.6; }
+        
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; overflow-y: auto; padding: 2rem; }
+        .modal.show { display: flex; justify-content: center; align-items: flex-start; }
+        .modal-content { background: white; width: 100%; max-width: 900px; border-radius: 12px; margin: 2rem 0; overflow: hidden; animation: modalSlide 0.3s ease; }
+        @keyframes modalSlide { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .modal-header { background: linear-gradient(135deg, var(--wb-blue) 0%, var(--wb-blue-light) 100%); color: white; padding: 1.5rem 2rem; position: relative; }
+        .modal-header h2 { font-size: 1.6rem; margin-bottom: 1rem; }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; line-height: 1; }
+        .modal-close:hover { opacity: 0.8; }
+        
+        .highlights { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .highlight-item { background: rgba(255,255,255,0.15); padding: 0.5rem 1rem; border-radius: 4px; }
+        .highlight-label { font-size: 0.7rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; }
+        .highlight-value { font-size: 1.1rem; font-weight: 700; }
+        
+        .modal-body { padding: 1.5rem 2rem; max-height: 55vh; overflow-y: auto; }
+        
+        .data-section { margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+        .data-section-header { background: var(--wb-gray-light); padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.2s; }
+        .data-section-header:hover { background: #ddd; }
+        .data-section-title { display: flex; align-items: center; gap: 0.75rem; font-weight: 600; font-size: 1.05rem; }
+        .section-icon { font-size: 1.3rem; }
+        .section-toggle { font-size: 1rem; transition: transform 0.2s; }
+        .data-section.collapsed .section-toggle { transform: rotate(-90deg); }
+        .data-section-content { padding: 1rem 1.25rem; }
+        .data-section.collapsed .data-section-content { display: none; }
+        
+        .sub-section-title { color: var(--wb-blue-light); font-size: 0.95rem; font-weight: 600; margin: 1rem 0 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eee; }
+        .sub-section-title:first-child { margin-top: 0; }
+        
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table tr { border-bottom: 1px solid #eee; }
+        .data-table tr:last-child { border-bottom: none; }
+        .data-table td { padding: 0.6rem 0.5rem; font-size: 0.9rem; }
+        .data-table td:first-child { color: var(--wb-gray); width: 75%; }
+        .data-table td:last-child { font-weight: 600; text-align: right; }
+        .data-value-yes { color: #2e7d32; }
+        .data-value-no { color: #c62828; }
+        .data-value-na { color: #999; font-style: italic; }
+        
+        .modal-footer { padding: 1.25rem 2rem; background: var(--wb-gray-light); display: flex; gap: 1rem; justify-content: flex-end; }
+        .btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: 1px solid var(--wb-blue); background: white; color: var(--wb-blue); font-size: 0.9rem; font-weight: 600; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+        .btn:hover { background: var(--wb-blue); color: white; }
+        
+        /* Footer */
+        .footer { background: var(--wb-blue); color: white; padding: 2.5rem 2rem 2rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+        .footer-logos { display: flex; flex-wrap: wrap; gap: 3rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .footer-logo { display: flex; align-items: center; gap: 0.75rem; }
+        .footer-logo-text { font-weight: 700; font-size: 1.2rem; }
+        .footer-logo span:last-child { font-size: 0.85rem; opacity: 0.9; }
+        .footer-links { display: flex; gap: 2rem; margin-bottom: 1rem; }
+        .footer-links a { color: white; text-decoration: none; font-size: 0.9rem; opacity: 0.8; }
+        .footer-links a:hover { opacity: 1; text-decoration: underline; }
+        .footer-copyright { font-size: 0.85rem; opacity: 0.7; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; height: auto; padding: 1rem 0; gap: 0.75rem; }
+            .filter-container { flex-direction: column; }
+            .topic-checkboxes { flex-direction: column; }
+            #map { height: 400px; }
+            .modal { padding: 1rem; }
+            .highlights { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <span>World Bank Group</span>
-    <h1>Building Regulations Atlas</h1>
-</div>
+<header class="header">
+    <div class="header-content">
+        <div class="header-titles">
+            <span>World Bank Group</span>
+            <h1>Building Regulations Atlas</h1>
+        </div>
+        <nav class="header-nav">
+            <a href="#map">Map</a>
+            <a href="#about">About</a>
+            <a href="#sources">Data Sources</a>
+        </nav>
+    </div>
+</header>
 
-<div id="map"></div>
+<section class="hero">
+    <p>The Building Regulations Atlas collates data from several World Bank Group resources on topics related to planning, design, and building control regulations and aspects of the wider building regulatory environment in selected cities and countries.</p>
+</section>
 
-<div class="legend">
-    <h4>Data Availability</h4>
-    <div class="legend-item"><div class="legend-color" style="background:#1a5a9c;"></div> Full Data</div>
-    <div class="legend-item"><div class="legend-color" style="background:#4a9fd4;"></div> B-READY Data</div>
-    <div class="legend-item"><div class="legend-color" style="background:#ccc;"></div> Limited Data</div>
-</div>
+<section class="filter-section">
+    <div class="filter-container">
+        <div class="filter-group">
+            <label class="filter-label">🌍 Country</label>
+            <select id="country-select" class="filter-select">
+                <option value="">-- Select a Country --</option>
+            </select>
+        </div>
+        
+        <div class="filter-group" style="flex:1;">
+            <label class="filter-label">📋 Regulatory Topics</label>
+            <div class="topic-checkboxes">
+                <div class="topic-item">
+                    <input type="checkbox" id="topic-planning" value="Planning and Zoning" checked>
+                    <label for="topic-planning"><span class="topic-icon">📍</span> Planning & Zoning</label>
+                </div>
+                <div class="topic-item">
+                    <input type="checkbox" id="topic-design" value="Building Design" checked>
+                    <label for="topic-design"><span class="topic-icon">🏗️</span> Building Design</label>
+                </div>
+                <div class="topic-item">
+                    <input type="checkbox" id="topic-materials" value="Materials" checked>
+                    <label for="topic-materials"><span class="topic-icon">🧱</span> Materials</label>
+                </div>
+                <div class="topic-item">
+                    <input type="checkbox" id="topic-compliance" value="Compliance Mechanisms" checked>
+                    <label for="topic-compliance"><span class="topic-icon">✓</span> Compliance</label>
+                </div>
+            </div>
+        </div>
+        
+        <button class="apply-btn" onclick="applyFilters()">Apply Filters</button>
+    </div>
+</section>
 
-<div class="info">
-    <h2>About</h2>
-    <p>Click on any country marker to view building regulation data.</p>
-</div>
+<section class="map-container" id="map">
+    <div id="mapDiv"></div>
+    <div class="map-legend">
+        <h4>Data Availability</h4>
+        <div class="legend-item"><span class="legend-color" style="background:#1a5a9c;"></span> Full Data (60+ indicators)</div>
+        <div class="legend-item"><span class="legend-color" style="background:#4a9fd4;"></span> B-READY Data (40-59)</div>
+        <div class="legend-item"><span class="legend-color" style="background:#7fc4e8;"></span> Limited Data (<40)</div>
+    </div>
+</section>
 
-<div class="footer">
-    © 2026 World Bank Group
+<section class="about-section" id="about">
+    <div class="about-container">
+        <h2 class="section-title">Regulatory Topics Covered</h2>
+        <p class="about-text">The Atlas covers four main regulatory topics with detailed sub-topics for building design and compliance mechanisms.</p>
+        <div class="topics-grid">
+            <div class="topic-card">
+                <div class="topic-card-icon">📍</div>
+                <h4>Planning and Zoning</h4>
+                <p>Land use maps, hazard zones, trunk infrastructure requirements</p>
+            </div>
+            <div class="topic-card">
+                <div class="topic-card-icon">🏗️</div>
+                <h4>Building Design</h4>
+                <p>Structural resilience, fire safety, green buildings, universal accessibility, services</p>
+            </div>
+            <div class="topic-card">
+                <div class="topic-card-icon">🧱</div>
+                <h4>Materials</h4>
+                <p>Regulated materials, testing requirements, disposal procedures</p>
+            </div>
+            <div class="topic-card">
+                <div class="topic-card-icon">✓</div>
+                <h4>Compliance Mechanisms</h4>
+                <p>Building control, transparency, dispute resolution, professional registration</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sources-section" id="sources">
+    <div class="sources-container">
+        <h2 class="section-title">Data Sources</h2>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Business Ready (B-READY)</h4>
+                <span class="source-year">2025</span>
+                <p>Assesses the regulatory framework and public services directed at firms, and the efficiency with which regulatory framework and public services are combined in practice.</p>
+            </div>
+            <div class="source-card">
+                <h4>Global Assessment of Building Codes</h4>
+                <span class="source-year">2025</span>
+                <p>Assesses the technical content of building codes for selected countries and related code implementation mechanisms.</p>
+            </div>
+            <div class="source-card">
+                <h4>Building Green Global Dataset</h4>
+                <span class="source-year">2025</span>
+                <p>Contains data on building energy codes and standards applicable to new and existing buildings, as well as their enforcement mechanisms and levels of compliance.</p>
+            </div>
+            <div class="source-card">
+                <h4>Building Regulations in Sub-Saharan Africa</h4>
+                <span class="source-year">2023</span>
+                <p>Contains data on building regulatory frameworks in Sub-Saharan African countries with a focus on building design regulations and their implementation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logos">
+            <div class="footer-logo">
+                <span class="footer-logo-text">🌐 World Bank Group</span>
+            </div>
+            <div class="footer-logo">
+                <span class="footer-logo-text">GFDRR</span>
+                <span>Global Facility for Disaster Reduction and Recovery</span>
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="#">Privacy Notice</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-copyright">© 2026 World Bank Group, All Rights Reserved.</div>
+    </div>
+</footer>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 id="modal-title">Country Name</h2>
+            <div class="highlights" id="modal-highlights"></div>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-footer">
+            <button class="btn" onclick="downloadCSV()">📥 Download CSV</button>
+            <button class="btn" onclick="printProfile()">🖨️ Print / PDF</button>
+        </div>
+    </div>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-// Wait for page to fully load
+// ===== EMBEDDED DATA =====
+const ATLAS_DATA = {"countries": {"AGO": {"name": "Angola", "region": "Sub-Saharan Africa", "income": "Lower middle income", "lat": -12.5, "lng": 18.5}, "BEN": {"name": "Benin", "region": "Sub-Saharan Africa", "income": "Lower middle income", "lat": 9.3, "lng": 2.3}, "BWA": {"name": "Botswana", "region": "Sub-Saharan Africa", "income": "Upper middle income", "lat": -22.3, "lng": 24.7}, "BFA": {"name": "Burkina Faso", "region": "Sub-Saharan Africa", "income": "Low income", "lat": 12.2, "lng": -1.5}, "CPV": {"name": "Cabo Verde", "region": "Sub-Saharan Africa", "income": "Upper middle income", "lat": 15.1, "lng": -23.6}, "CMR": {"name": "Cameroon", "region": "Sub-Saharan Africa", "income": "Lower middle income", "lat": 5.9, "lng": 12.4}, "CAF": {"name": "Central African Republic", "region": "Sub-Saharan Africa", "income": "Low income", "lat": 6.6, "lng": 20.9}, "TCD": {"name": "Chad", "region": "Sub-Saharan Africa", "income": "Low income", "lat": 15.4, "lng": 18.7}, "COD": {"name": "Congo, Dem. Rep.", "region": "Sub-Saharan Africa", "income": "Low income", "lat": -4.0, "lng": 21.8}, "COG": {"name": "Congo, Rep.", "region": "Sub-Saharan Africa", "income": "Lower middle income", "lat": -0.2, "lng": 15.8}, "GNQ": {"name": "Equatorial Guinea", "region": "Sub-Saharan Africa", "income": "Upper middle income", "lat": 1.6, "lng": 10.3}, "SWZ": {"name": "Eswatini", "region": "Sub-Saharan Africa", "income": "Lower middle income", "lat": -26.5, "lng": 31.5}, "GMB": {"name": "Gambia, The", "region": "Sub-Saharan Africa", "income": "Low income", "lat": 13.4, "lng": -15.4}, "GHA": {"name": "Ghana", "region": "Sub-Saharan Africa", "income": "Lower middle income", "lat": 7.9, "lng": -1.0}, "LSO": {"name": "Lesotho", "region": "Sub-Saharan Africa", "income": "Lower middle income", "lat": -29.6, "lng": 28.2}, "MDG": {"name": "Madagascar", "region": "Sub-Saharan Africa", "income": "Low income", "lat": -18.9, "lng": 46.9}, "MLI": {"name": "Mali", "region": "Sub-Saharan Africa", "income": "Low income", "lat": 17.6, "lng": -4.0}, "MUS": {"name": "Mauritius", "region": "Sub-Saharan Africa", "income": "Upper middle income", "lat": -20.3, "lng": 57.6}, "NAM": {"name": "Namibia", "region": "Sub-Saharan Africa", "income": "Lower middle income", "lat": -22.6, "lng": 17.1}, "RWA": {"name": "Rwanda", "region": "Sub-Saharan Africa", "income": "Low income", "lat": -1.9, "lng": 29.9}, "SEN": {"name": "Senegal", "region": "Sub-Saharan Africa", "income": "Lower middle income", "lat": 14.5, "lng": -14.5}, "SYC": {"name": "Seychelles", "region": "Sub-Saharan Africa", "income": "High income", "lat": -4.7, "lng": 55.5}, "SLE": {"name": "Sierra Leone", "region": "Sub-Saharan Africa", "income": "Low income", "lat": 8.5, "lng": -11.8}, "SSD": {"name": "South Sudan", "region": "Sub-Saharan Africa", "income": "Low income", "lat": 7.9, "lng": 30.0}, "TZA": {"name": "Tanzania", "region": "Sub-Saharan Africa", "income": "Lower middle income", "lat": -6.4, "lng": 34.9}, "TGO": {"name": "Togo", "region": "Sub-Saharan Africa", "income": "Low income", "lat": 8.6, "lng": 0.8}}, "indicators": {"BR_1_2_1_1_1": {"name": "Building Codes/Standards Applicable to All Constructions", "main_topic": "Building Design", "sub_topic": "General Provisions", "source": "BR"}, "SSBRR": {"name": "Availability of information on building control processes for applicants", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "SSBRR"}, "GABC": {"name": "Defined building _x000D_inspection _x000D_framework", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "GABC"}, "BR_1_2_1_2_5": {"name": "Countries with a building code integrating aspects related with structural strength (materials to be used, such as wood, concrete, tubular or masonry)", "main_topic": "Building Design", "sub_topic": "Structural Resilience", "source": "BR"}, "BR_1_2_1_2_4": {"name": "Countries with a building code integrating Soil testing requirements according to certain criteria (eg - based on classification, strength, compressibility of soil)", "main_topic": "Building Design", "sub_topic": "Structural Resilience", "source": "BR"}, "BR_1_2_1_2_1": {"name": "Countries with natural disaster resistant construction related standards", "main_topic": "Building Design", "sub_topic": "Structural Resilience", "source": "BR"}, "SSBRR_006": {"name": "Flood mitigation", "main_topic": "Building Design", "sub_topic": "Structural Resilience", "source": "SSBRR"}, "SSBRR_007": {"name": "Landslides", "main_topic": "Building Design", "sub_topic": "Structural Resilience", "source": "SSBRR"}, "BR_1_2_1_2_2": {"name": "Countries with a building code integrating building classification according to certain criteria (e.g., usage; size)", "main_topic": "Building Design", "sub_topic": "Building Classification", "source": "BR"}, "SSBRR_008": {"name": "Use and occupancy classifications", "main_topic": "Building Design", "sub_topic": "Building Classification", "source": "SSBRR"}, "SSBRR_009": {"name": "Height and areas limitations based on the type of construction", "main_topic": "Building Design", "sub_topic": "Building Classification", "source": "SSBRR"}, "SSBRR_010": {"name": "Special considerations for certain building types", "main_topic": "Building Design", "sub_topic": "Building Classification", "source": "SSBRR"}, "GABC_026": {"name": "Importance or risk classification of buildings", "main_topic": "Building Design", "sub_topic": "Building Classification", "source": "GABC"}, "BR_1_2_1_2_3": {"name": "Countries with a building code integrating active and passive fire safety measures", "main_topic": "Building Design", "sub_topic": "Fire Safety", "source": "BR"}, "SSBRR_011": {"name": "Fire resistance performance requirements", "main_topic": "Building Design", "sub_topic": "Fire Safety", "source": "SSBRR"}, "SSBRR_012": {"name": "Means of access and egress", "main_topic": "Building Design", "sub_topic": "Fire Safety", "source": "SSBRR"}, "SSBRR_013": {"name": "Fire prevention", "main_topic": "Building Design", "sub_topic": "Fire Safety", "source": "SSBRR"}, "SSBRR_014": {"name": "Fire service access", "main_topic": "Building Design", "sub_topic": "Fire Safety", "source": "SSBRR"}, "BR_UQ_1": {"name": "Accessibility and inclusivity standard applicable to all construction", "main_topic": "Building Design", "sub_topic": "Universal Accessibility", "source": "BR-UQ"}, "SSBRR_018": {"name": "Access route and means", "main_topic": "Building Design", "sub_topic": "Universal Accessibility", "source": "SSBRR"}, "SSBRR_019": {"name": "Fixtures and signals", "main_topic": "Building Design", "sub_topic": "Universal Accessibility", "source": "SSBRR"}, "SSBRR_020": {"name": "Accessibility and usability of internal facilities", "main_topic": "Building Design", "sub_topic": "Universal Accessibility", "source": "SSBRR"}, "GABC_037": {"name": "External environment", "main_topic": "Building Design", "sub_topic": "Universal Accessibility", "source": "GABC"}, "BR_1_2_2_1_1": {"name": "Are there legally required minimum energy efficiency performance standards in the building code or any other building regulations?", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "BR_1_2_2_2_1": {"name": "Is proof of compliance with energy efficiency standards included as a precondition for obtaining a building permit?", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "BR_1_2_2_3_1": {"name": "Thermal transmittance or insulation calculations for building envelopes are verified as part of the energy efficiency performance standards", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "BR_1_2_2_3_2": {"name": "Solar heat gain calculations for building envelope are verified as part of the energy efficiency performance standards", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "BR_1_2_2_3_3": {"name": "Glazing factors for fenestration are verified as part of the energy efficiency performance standards", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "BR_1_2_2_3_4": {"name": "Heating/cooling demand calculations are verified as part of the energy efficiency performance standards", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "BR_1_2_2_3_5": {"name": "Daylighting and orientation are verified as part of the energy efficiency performance standards", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "BR_1_2_2_3_6": {"name": "Permanent shading are verified as part of the energy efficiency performance standards", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "BR_1_2_2_3_7": {"name": "Air barrier, air leakage or air infiltration are verified as part of the energy efficiency performance standards", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "BR_1_2_2_3_8": {"name": "Required minimum efficiency of heating and cooling equipment and controls standards are verified as part of the energy efficiency performance standards", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "BR_1_2_2_3_9": {"name": "Required minimum standards for efficiency of water heating equipment and controls are verified as part of the energy efficiency performance standards", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "BR_1_2_2_3_10": {"name": "Efficiency of lighting fixtures and controls are verified as part of the energy efficiency performance standards ", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "BR_1_2_2_4_1": {"name": "Are there any incentives provided to builders in order to promote green building standards?", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BR"}, "SSBRR_021": {"name": "Natural Insulation and ventilation", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "SSBRR"}, "SSBRR_022": {"name": "Green building construction material", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "SSBRR"}, "SSBRR_023": {"name": "Energy and water efficient design methods", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "SSBRR"}, "SSBRR_024": {"name": "Carbon smart/neutral construction", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "SSBRR"}, "BR_1_2_1_3_1": {"name": "Does the regulatory framework require permits for the handling, removal, and disposal of regulated construction materials that pose health risks?", "main_topic": "Materials", "sub_topic": "Materials Disposal", "source": "BR"}, "BR_1_2_1_4_1": {"name": "Asbestos are regulated", "main_topic": "Materials", "sub_topic": "Materials Disposal", "source": "BR"}, "BR_1_2_1_4_2": {"name": "Lead-containing pipes, components, paints are required to be inspected/tested by law are regulated", "main_topic": "Materials", "sub_topic": "Materials Disposal", "source": "BR"}, "BR_1_2_1_4_3": {"name": "Mercury-containing fluorescent lamps, thermostats, and electric devices are regulated", "main_topic": "Materials", "sub_topic": "Materials Disposal", "source": "BR"}, "BR_1_2_1_4_4": {"name": "Polychlorinated biphenyls in electric transformers, fluorescent light ballasts, caulk, and masonry joints are regulated", "main_topic": "Materials", "sub_topic": "Materials Disposal", "source": "BR"}, "BR_1_2_1_8_1": {"name": "Asbestos are required to be inspected/tested by law", "main_topic": "Materials", "sub_topic": "Materials Disposal", "source": "BR"}, "BR_1_2_1_8_2": {"name": "Lead-containing pipes, components, paints are required to be inspected/tested by law", "main_topic": "Materials", "sub_topic": "Materials Disposal", "source": "BR"}, "BR_1_2_1_8_3": {"name": "Mercury-containing fluorescent lamps, thermostats, and electric devices are required to be inspected/tested by law", "main_topic": "Materials", "sub_topic": "Materials Disposal", "source": "BR"}, "BR_1_2_1_8_4": {"name": "Polychlorinated biphenyls in electric transformers, fluorescent light ballasts, caulk, and masonry joints are required to be inspected/tested by law", "main_topic": "Materials", "sub_topic": "Materials Disposal", "source": "BR"}, "BR_1_2_3_2_1": {"name": "Countries with a map that identify areas allocated to residential, commercial, agricultural, recreational, public/institutional, mixed use", "main_topic": "Planning and Zoning", "sub_topic": "Planning and Zoning", "source": "BR"}, "BR_1_2_3_3_1": {"name": "Countries with a map that identify Areas in which Building is Not Permitted due to Natural Hazards", "main_topic": "Planning and Zoning", "sub_topic": "Planning and Zoning", "source": "BR"}, "BR_1_2_3_4_1": {"name": "Countries with hazard maps that identify minimum separation between residential and hazardous occupancies", "main_topic": "Planning and Zoning", "sub_topic": "Planning and Zoning", "source": "BR"}, "BR_1_2_3_1_1": {"name": "Countries with requirements for trunk infrastructure service access (water, electricity, sanitation)", "main_topic": "Planning and Zoning", "sub_topic": "Planning and Zoning", "source": "BR"}, "BR_1_2_3_5_1": {"name": "Countries with maps that identify areas in which building is not permitted in relation to natural resources", "main_topic": "Planning and Zoning", "sub_topic": "Planning and Zoning", "source": "BR"}, "BR_2_3_2_6_1": {"name": "Countries with an updated  City Master Plan (for the main city)", "main_topic": "Planning and Zoning", "sub_topic": "Planning and Zoning", "source": "BR"}, "BR_1_2_1_10_2": {"name": "Having a minimum number of years of practical experience is legally required to conduct technical supervisions/inspections of construction projects?", "main_topic": "Compliance Mechanisms", "sub_topic": "Professional Registration", "source": "BR"}, "BR_1_2_1_10_3": {"name": "Being a registered member of the order (association) of architects or civil engineers  is legally required to conduct technical supervisions/inspections of construction projects?", "main_topic": "Compliance Mechanisms", "sub_topic": "Professional Registration", "source": "BR"}, "BR_1_2_1_10_4": {"name": "Having to pass a qualification examis legally required to conduct technical supervisions/inspections of construction projects?", "main_topic": "Compliance Mechanisms", "sub_topic": "Professional Registration", "source": "BR"}, "GABC_054": {"name": "Professional_x000D_ certification and_x000D_ registration system", "main_topic": "Compliance Mechanisms", "sub_topic": "Professional Registration", "source": "GABC"}, "BR_1_2_1_10_1": {"name": "Being an accredited architect or engineer is legally required to conduct technical supervisions/inspections of construction projects?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_2_3_2_8_1": {"name": "How is adherence to zoning regulations verified before submitting building permit applications in the measured city ?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_2_3_2_7_1": {"name": "Are there clear defined steps to modifying the zoning/land use plan in the measured city?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_1_2_1_6_1": {"name": "Are technical inspections for structural safety (if any) required by law to be carried out during construction?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_1_2_1_6_2": {"name": "Are random/unscheduled inspections required by law to be carried out during construction?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_1_2_1_6_3": {"name": "Are Phased inspections required by law to be carried out during construction?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_1_2_1_6_4": {"name": "Are Risk-based type inspections required by law to be carried out during construction?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_1_2_1_5_1": {"name": "According to the law, is the public agency (i.e., technical department of the municipality) responsible for verifying compliance of building plans with existing building regulations? ", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_1_2_1_5_2": {"name": "According to the law, is a private and external firms of certified architects and/or civil engineers (third party professionals to be hired by the builder) responsible for verifying compliance of building plans with existing building regulations?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_1_2_1_5_3": {"name": "According to the law, the architect/engineer who prepared the plans shall submit an attestation to the permit-issuing agency ?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_1_2_1_5_4": {"name": "According to the law, is a Public agency (somebody other than an architect or engineer) responsible for verifying compliance of building plans with existing building regulations?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_1_2_1_9_1": {"name": "Is liability for structural defects in the measured city defined by law once a building is in use or occupied?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_1_2_1_9_2": {"name": "If there are structural problems in a building once it is in use, are the responsible architects or engineers legally held liable according to the law?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_1_2_1_9_3": {"name": "According to the law, is the professional or agency conducting technical inspections during construction held liable for structural defects or problems once the building is in use?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_1_2_1_9_4": {"name": "According to the law, is the construction company held liable for structural defects or problems once the building is in use?", "main_topic": "Compliance Mechanisms", "sub_topic": "Building Control", "source": "BR"}, "BR_2_3_2_1_1": {"name": "Are planning and building control regulations publicly accessible?", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_2_2_1_1": {"name": "Are spatial plans and zoning requirements available to all stakeholders in the measured city in the form of a Geographic Information System (GIS) or other spatial data platforms?", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_2_1_3_1": {"name": "Is there a Geographic Information System used by the land administration agency in the measured city?", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_2_2_2_1": {"name": "Are the GIS and/or national spatial platforms integrated between the permit-issuing agency and other stakeholder agencies (i.e., cadaster, land registries, municipal departments, utility service providers, etc.)?", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_3_2_2_1": {"name": "List of required pre-approvals of the drawings/plans by the relevant agencies (i.e., electrical, water, sewerage, environmental etc.)", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_3_2_2_2": {"name": "List of required documents necessary to obtain a building permit (i.e., land ownership certificate, types of drawings and plans, etc.)", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_3_2_2_3": {"name": "List of required documents necessary to obtain an occupancy permit", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_3_2_3_1": {"name": "Are the requirements to obtain any type of building related permits published online?", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_3_2_5_1": {"name": "Are there official, updated and publicly available online statistics tracking the number of issued building permits?", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_1_4_1_1": {"name": "Is there an online platform for issuing building authorizations in the measured city?", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_1_4_3_1": {"name": "Is there an electronic system is available for submitting and issuing Building permits", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_1_4_3_2": {"name": "Is there an electronic system is available for submitting and issuing Occupancy permits", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_1_4_2_1": {"name": "Does the platform allow Online payments", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_1_4_2_2": {"name": "Does the platform allow Online communication", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_1_4_2_3": {"name": "Does the platform allow Online notification", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_1_4_2_4": {"name": "Does the platform allow Online submission", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_1_4_2_5": {"name": "Does the platform allow auto-generated checklist of requirements for each step of plan approval", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_2_3_2_4_1": {"name": "Is the applicable fee schedule for all types of construction available online and up to date?", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_3_2_1_1_1": {"name": "How many days did it take to obtain a construction-related permit from the day of the application to the day the permit was granted?", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_3_2_2_1_1": {"name": "What is the total time to complete the entire process to obtain a building permit for a commercial property - office building type (calendar days)?", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "BR_3_2_3_1_1": {"name": "What is the total cost to complete the entire process of obtaining both a building permit for a commercial property - office building type (in local currency)?", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "BR"}, "GABC_055": {"name": "Accessibility of _x000D_building control _x000D_regulations and _x000D_information on_x000D_ processes", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "GABC"}, "GABC_056": {"name": "An online approval system is available in the country", "main_topic": "Compliance Mechanisms", "sub_topic": "Transparency and Access to Information", "source": "GABC"}, "SSBRR_025": {"name": "Independent dispute resolution mechanism", "main_topic": "Compliance Mechanisms", "sub_topic": "Dispute Resolution", "source": "SSBRR"}, "GABC_057": {"name": "Dispute resolution _x000D_mechanism", "main_topic": "Compliance Mechanisms", "sub_topic": "Dispute Resolution", "source": "GABC"}, "BR_2_1_4_4_1": {"name": "Can final decisions on building permits be disputed online?", "main_topic": "Compliance Mechanisms", "sub_topic": "Dispute Resolution", "source": "BR"}, "BR_1_2_1_11_1": {"name": "Does the building regulation /code/standard have any provisions to dispute the decision of the building authority?", "main_topic": "Compliance Mechanisms", "sub_topic": "Dispute Resolution", "source": "BR"}, "BG": {"name": "Luminary Efficacy (lm/W)", "main_topic": "Building Design", "sub_topic": "Green Buildings", "source": "BG"}}, "data": {"AGO": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "Yes", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "No", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "There is a master plan/zoning plan, but it has not been updated within the last 10 years", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "No", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "No", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "Yes", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "No", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "No", "BR_2_2_2_1_1": "Yes, available from a local or central system (e.g., national spatial planning system, GIS, or registry of urban plans) and can be used for processing construction-related permits", "BR_2_2_2_2_1": "Yes", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "No", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "Yes, available online and updated regularly", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 30, "BR_3_2_2_1_1": 180, "BR_3_2_3_1_1": 1500000}, "BEN": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "No", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "Yes", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "No", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "No", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "Yes", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "No", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_1_4_3_1": "Yes", "BR_2_1_4_3_2": "No", "BR_2_1_4_2_1": "Yes", "BR_2_1_4_2_2": "Yes", "BR_2_1_4_2_3": "Yes", "BR_2_1_4_2_4": "Yes", "BR_2_1_4_2_5": "Yes", "BR_2_3_2_4_1": "Yes, available online and updated regularly", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 30, "BR_3_2_2_1_1": 60, "BR_3_2_3_1_1": 1605000}, "BWA": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "There is a master plan/zoning plan, but it has not been updated within the last 10 years", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "Yes", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "No", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 30, "BR_3_2_2_1_1": 152, "BR_3_2_3_1_1": 35500}, "BFA": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "No", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "Yes", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "There is a master plan/zoning plan, but it has not been updated within the last 10 years", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "No", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "No", "BR_1_2_1_6_4": "No", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "Yes, available online for information purposes (not valid for official procedures)", "BR_2_2_2_2_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "Yes", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "Yes, available online and updated regularly", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 14, "BR_3_2_2_1_1": 75, "BR_3_2_3_1_1": 2693750}, "CPV": {"BR_1_2_1_1_1": "No", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "Yes", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "No", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "Yes", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "No", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "No", "BR_1_2_1_6_4": "No", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "No", "BR_2_2_2_1_1": "Yes, available online for information purposes (not valid for official procedures)", "BR_2_2_2_2_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "Yes", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_1_4_3_1": "Even Split", "BR_2_1_4_3_2": "Even Split", "BR_2_1_4_2_1": "Even Split", "BR_2_1_4_2_2": "Even Split", "BR_2_1_4_2_3": "Yes", "BR_2_1_4_2_4": "Even Split", "BR_2_1_4_2_5": "Even Split", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 15, "BR_3_2_2_1_1": 36.5, "BR_3_2_3_1_1": 100000}, "CMR": {"BR_1_2_1_1_1": "No", "BR_1_2_1_2_1": "No", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "There is a master plan/zoning plan, but it has not been updated within the last 10 years", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "No", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "No", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "Yes", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "Yes", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "Yes", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 35, "BR_3_2_2_1_1": 60, "BR_3_2_3_1_1": 2685000}, "CAF": {"BR_1_2_1_1_1": "No", "BR_1_2_1_2_1": "No", "BR_1_2_1_2_2": "No", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "No", "BR_1_2_3_3_1": "No", "BR_1_2_3_4_1": "No", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "No", "BR_2_3_2_6_1": "There is no master plan/zoning plan", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "No", "BR_1_2_1_6_4": "No", "BR_1_2_1_5_1": "No", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "Yes", "BR_2_3_2_1_1": "No", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "No", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "No", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 1, "BR_3_2_2_1_1": 30, "BR_3_2_3_1_1": 3000000}, "TCD": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "No", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "Yes", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "No", "BR_1_2_3_3_1": "No", "BR_1_2_3_4_1": "No", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "No", "BR_2_3_2_6_1": "There is no master plan/zoning plan", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "Yes", "BR_2_3_2_1_1": "No", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "No", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "No", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 14, "BR_3_2_2_1_1": 90, "BR_3_2_3_1_1": 3400500}, "COD": {"BR_1_2_1_1_1": "No", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "Yes", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "There is a master plan/zoning plan, but it has not been updated within the last 10 years", "BR_2_3_2_8_1": "Zoning regulations adherence is not verified.", "BR_2_3_2_7_1": "No", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "No", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "No", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "No", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "No", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "No", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 20, "BR_3_2_2_1_1": 50, "BR_3_2_3_1_1": 11990000}, "COG": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "No", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "No", "BR_1_2_3_4_1": "No", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "Yes", "BR_2_3_2_8_1": "Zoning regulations adherence is not verified.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "No", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "Yes", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "No", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 3, "BR_3_2_2_1_1": 100, "BR_3_2_3_1_1": 750000}, "GNQ": {"BR_1_2_1_1_1": "No", "BR_1_2_1_2_1": "No", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "No", "BR_UQ_1": "No", "BR_1_2_2_1_1": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "No", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "No", "BR_1_2_3_4_1": "No", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "No", "BR_2_3_2_6_1": "There is no master plan/zoning plan", "BR_2_3_2_8_1": "Zoning regulations adherence is not verified.", "BR_2_3_2_7_1": "No; 50% Skip Logic", "BR_1_2_1_10_1": "No", "BR_1_2_1_10_2": "No", "BR_1_2_1_10_3": "No", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "No", "BR_1_2_1_6_4": "No", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "No", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "No", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "No", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 30, "BR_3_2_2_1_1": 20, "BR_3_2_3_1_1": 135000}, "SWZ": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "No", "BR_1_2_2_3_1": "No", "BR_1_2_2_3_2": "No", "BR_1_2_2_3_3": "No", "BR_1_2_2_3_4": "No", "BR_1_2_2_3_5": "No", "BR_1_2_2_3_6": "No", "BR_1_2_2_3_7": "No", "BR_1_2_2_3_8": "No", "BR_1_2_2_3_9": "Yes", "BR_1_2_2_3_10": "Yes", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "There is a master plan/zoning plan, but it has not been updated within the last 10 years", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "Yes", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "Yes", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "No", "BR_2_2_2_2_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "No", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "Yes", "BR_3_2_1_1_1": 2, "BR_3_2_2_1_1": 60, "BR_3_2_3_1_1": 6000}, "GMB": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "No", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "Yes", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "No", "BR_1_2_1_10_3": "No", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "No", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "No", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "No", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "No", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 2, "BR_3_2_2_1_1": 111, "BR_3_2_3_1_1": 40000}, "GHA": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "Yes", "BR_1_2_2_3_1": "Yes", "BR_1_2_2_3_2": "Yes", "BR_1_2_2_3_3": "Yes", "BR_1_2_2_3_4": "Yes", "BR_1_2_2_3_5": "Yes", "BR_1_2_2_3_6": "Yes", "BR_1_2_2_3_7": "Yes", "BR_1_2_2_3_8": "Yes", "BR_1_2_2_3_9": "Yes", "BR_1_2_2_3_10": "Yes", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "Yes", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "Yes", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "Yes, available online for information purposes (not valid for official procedures)", "BR_2_2_2_2_1": "No", "BR_2_3_2_2_1": "Yes", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "Yes", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "Yes, available online and updated regularly", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 21, "BR_3_2_2_1_1": 125, "BR_3_2_3_1_1": 36000}, "LSO": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "No", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "No", "BR_1_2_3_3_1": "No", "BR_1_2_3_4_1": "No", "BR_1_2_3_1_1": "No", "BR_1_2_3_5_1": "No", "BR_2_3_2_6_1": "There is no master plan/zoning plan", "BR_2_3_2_8_1": "Zoning regulations adherence is not verified.", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "No", "BR_1_2_1_10_3": "No", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "No", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "No", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_1_4_3_1": "Yes", "BR_2_1_4_3_2": "No", "BR_2_1_4_2_1": "No", "BR_2_1_4_2_2": "Yes", "BR_2_1_4_2_3": "Yes", "BR_2_1_4_2_4": "Yes", "BR_2_1_4_2_5": "Yes", "BR_2_3_2_4_1": "Yes, available online and updated regularly", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 14, "BR_3_2_2_1_1": 90, "BR_3_2_3_1_1": 18750}, "MDG": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "No", "BR_1_2_1_2_2": "No", "BR_1_2_1_2_3": "No", "BR_UQ_1": "No", "BR_1_2_2_1_1": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "No", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "No", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "Yes", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "No", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "No", "BR_1_2_1_6_4": "No", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "No", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "Yes, available online for information purposes (not valid for official procedures)", "BR_2_2_2_2_1": "No", "BR_2_3_2_2_1": "Yes", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_1_4_3_2": "Yes", "BR_2_1_4_2_1": "Yes", "BR_2_1_4_2_2": "Yes", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 30, "BR_3_2_2_1_1": 45, "BR_3_2_3_1_1": 7052000}, "MLI": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "No", "BR_1_2_2_3_1": "Yes", "BR_1_2_2_3_2": "Yes", "BR_1_2_2_3_3": "Yes", "BR_1_2_2_3_4": "Yes", "BR_1_2_2_3_5": "Yes", "BR_1_2_2_3_6": "Yes", "BR_1_2_2_3_7": "Yes", "BR_1_2_2_3_8": "Yes", "BR_1_2_2_3_9": "Yes", "BR_1_2_2_3_10": "Yes", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "There is a master plan/zoning plan, but it has not been updated within the last 10 years", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "Yes", "BR_3_2_1_1_1": 7, "BR_3_2_2_1_1": 30, "BR_3_2_3_1_1": 34398000}, "MUS": {"BR_1_2_1_1_1": "No", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "Yes", "BR_1_2_2_4_1": "Yes", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "There is no master plan/zoning plan", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "No", "BR_1_2_1_5_1": "No", "BR_1_2_1_5_2": "No", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "Yes, available online for information purposes (not valid for official procedures)", "BR_2_3_2_2_1": "Yes", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "Yes", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_1_4_3_1": "Yes", "BR_2_1_4_3_2": "Yes", "BR_2_1_4_2_1": "Yes", "BR_2_1_4_2_2": "Yes", "BR_2_1_4_2_3": "Yes", "BR_2_1_4_2_4": "Yes", "BR_2_1_4_2_5": "Yes", "BR_2_3_2_4_1": "Yes, available online and updated regularly", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "Yes", "BR_3_2_1_1_1": 60, "BR_3_2_2_1_1": 40, "BR_3_2_3_1_1": 600000}, "NAM": {"BR_1_2_1_1_1": "No", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "Yes", "BR_1_2_2_3_1": "No", "BR_1_2_2_3_2": "No", "BR_1_2_2_3_3": "Yes; 50% Skip Logic", "BR_1_2_2_3_4": "No", "BR_1_2_2_3_5": "No", "BR_1_2_2_3_6": "No", "BR_1_2_2_3_7": "Yes", "BR_1_2_2_3_8": "No", "BR_1_2_2_3_9": "No", "BR_1_2_2_3_10": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "Yes", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "Yes", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "Yes, available from a local or central system (e.g., national spatial planning system, GIS, or registry of urban plans) and can be used for processing construction-related permits", "BR_2_2_2_2_1": "Yes", "BR_2_3_2_2_1": "Yes", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "Yes", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "Yes, available online and updated regularly", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 21, "BR_3_2_2_1_1": 245, "BR_3_2_3_1_1": 137500}, "RWA": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "Yes", "BR_1_2_2_3_1": "No", "BR_1_2_2_3_2": "Yes", "BR_1_2_2_3_3": "No", "BR_1_2_2_3_4": "Yes", "BR_1_2_2_3_5": "Yes", "BR_1_2_2_3_6": "Yes", "BR_1_2_2_3_7": "Yes", "BR_1_2_2_3_8": "Yes", "BR_1_2_2_3_9": "No", "BR_1_2_2_3_10": "Yes", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "Yes", "BR_2_3_2_8_1": "Zoning compliance can be verified by the builder through accessible online zoning maps and is further checked by the permit issuing authority upon receipt of the building permit application, with no additional involvement required from the builder.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "Yes", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "No", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "Yes, available from a local or central system (e.g., national spatial planning system, GIS, or registry of urban plans) and can be used for processing construction-related permits", "BR_2_2_2_2_1": "Yes", "BR_2_3_2_2_1": "Yes", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "Yes", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_1_4_3_1": "Yes", "BR_2_1_4_3_2": "Yes", "BR_2_1_4_2_1": "Yes", "BR_2_1_4_2_2": "Yes", "BR_2_1_4_2_3": "Yes", "BR_2_1_4_2_4": "Yes", "BR_2_1_4_2_5": "Yes", "BR_2_3_2_4_1": "Yes, available online and updated regularly", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 28, "BR_3_2_2_1_1": 40, "BR_3_2_3_1_1": 2000000, "SSBRR_001": "Yes", "SSBRR_002": "Yes", "SSBRR_003": "Yes", "SSBRR_004": "Yes", "SSBRR_005": "Yes", "SSBRR_006": "Yes", "SSBRR_007": "Yes", "SSBRR_008": "Yes", "SSBRR_009": "No", "SSBRR_010": "Yes", "SSBRR_011": "Yes", "SSBRR_012": "Yes", "SSBRR_013": "Yes", "SSBRR_014": "Yes", "SSBRR_015": "Yes", "SSBRR_016": "Yes", "SSBRR_017": "Yes", "SSBRR_018": "Yes", "SSBRR_019": "Yes", "SSBRR_020": "Yes", "SSBRR_021": "Yes", "SSBRR_022": "Yes", "SSBRR_023": "Yes", "SSBRR_024": "Yes", "SSBRR_025": "No", "GABC_001": "Yes", "GABC_002": "No", "GABC_003": "No", "GABC_004": "No", "GABC_005": "No", "GABC_006": "Yes", "GABC_007": "Yes", "GABC_008": "Yes", "GABC_009": "No", "GABC_010": "No", "GABC_011": "No", "GABC_012": "No", "GABC_013": "No", "GABC_014": "No Data", "GABC_015": "No Data", "GABC_016": "No Data", "GABC_017": "No", "GABC_018": "Yes", "GABC_019": "Yes", "GABC_020": "Yes", "GABC_021": "Yes", "GABC_022": "Yes", "GABC_023": "Yes", "GABC_024": "Yes", "GABC_025": "Yes", "GABC_026": "Yes", "GABC_027": "Yes", "GABC_028": "Yes", "GABC_029": "Yes", "GABC_030": "Yes", "GABC_031": "No", "GABC_032": "No", "GABC_033": "Yes", "GABC_034": "Yes", "GABC_035": "Yes", "GABC_036": "Yes", "GABC_037": "Yes", "GABC_038": "Yes", "GABC_039": "Yes", "GABC_040": "Yes", "GABC_041": "Yes", "GABC_042": "Yes", "GABC_043": "Yes", "GABC_044": "Yes", "GABC_045": "Yes", "GABC_046": "Yes", "GABC_047": "Yes", "GABC_048": "Yes", "GABC_049": "Yes", "GABC_050": "Yes", "GABC_051": "Hybrid Approach", "GABC_052": "Yes", "GABC_053": "Partial", "GABC_054": "Yes", "GABC_055": "Yes", "GABC_056": "Yes", "GABC_057": "Partial"}, "SEN": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "Yes", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "No", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "There is a master plan/zoning plan, but it has not been updated within the last 10 years", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "Yes", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_1_4_3_1": "No", "BR_2_1_4_3_2": "No", "BR_2_1_4_2_1": "No", "BR_2_1_4_2_2": "Yes", "BR_2_1_4_2_3": "Yes", "BR_2_1_4_2_4": "No", "BR_2_1_4_2_5": "No", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "Yes", "BR_3_2_1_1_1": 30, "BR_3_2_2_1_1": 75, "BR_3_2_3_1_1": 3750000}, "SYC": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "No", "BR_1_2_2_4_1": "Yes", "BR_1_2_1_3_1": "No", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "No", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "Yes", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "No", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "Yes, available online for information purposes (not valid for official procedures)", "BR_2_2_2_2_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "No", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "No", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_1_4_3_1": "No; 50% Skip Logic", "BR_2_1_4_3_2": "No; 50% Skip Logic", "BR_2_1_4_2_1": "Yes; 50% Skip Logic", "BR_2_1_4_2_2": "No; 50% Skip Logic", "BR_2_1_4_2_3": "Yes; 50% Skip Logic", "BR_2_1_4_2_4": "Yes; 50% Skip Logic", "BR_2_1_4_2_5": "Yes; 50% Skip Logic", "BR_2_3_2_4_1": "Available online but not updated regularly", "BR_2_1_4_4_1": "Yes", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 30, "BR_3_2_2_1_1": 66, "BR_3_2_3_1_1": 152850}, "SLE": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "No", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "No", "BR_1_2_3_4_1": "No", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "No", "BR_2_3_2_6_1": "There is a master plan/zoning plan, but it has not been updated within the last 10 years", "BR_2_3_2_8_1": "Zoning regulations adherence is not verified.", "BR_2_3_2_7_1": "No", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "Yes", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "No", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "Yes", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "Available online but not updated regularly", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 12, "BR_3_2_2_1_1": 30, "BR_3_2_3_1_1": 5000}, "SSD": {"BR_1_2_1_1_1": "No", "BR_1_2_1_2_1": "No", "BR_1_2_1_2_2": "No", "BR_1_2_1_2_3": "No", "BR_UQ_1": "No", "BR_1_2_2_1_1": "No", "BR_1_2_2_3_1": "No", "BR_1_2_2_3_2": "No", "BR_1_2_2_3_3": "No", "BR_1_2_2_3_4": "No", "BR_1_2_2_3_5": "No", "BR_1_2_2_3_6": "No", "BR_1_2_2_3_7": "No", "BR_1_2_2_3_8": "No", "BR_1_2_2_3_9": "No", "BR_1_2_2_3_10": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "No", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "No", "BR_1_2_3_4_1": "No", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "No", "BR_2_3_2_6_1": "There is no master plan/zoning plan", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_1_2_1_10_1": "No", "BR_1_2_1_10_2": "No", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "No", "BR_1_2_1_6_4": "No", "BR_1_2_1_5_1": "No", "BR_1_2_1_5_2": "No", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "No", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "No", "BR_2_3_2_2_3": "No", "BR_2_3_2_3_1": "No", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 3, "BR_3_2_2_1_1": 15, "BR_3_2_3_1_1": 300000}, "TZA": {"BR_1_2_1_1_1": "No", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "Yes", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "Yes", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "No", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "Yes", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "Yes", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "Yes", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "No", "BR_2_2_2_2_1": "No", "BR_2_3_2_2_1": "No", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "Yes", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_1_4_3_1": "Even Split", "BR_2_1_4_3_2": "Yes", "BR_2_1_4_2_1": "Yes", "BR_2_1_4_2_2": "Even Split", "BR_2_1_4_2_3": "Even Split", "BR_2_1_4_2_4": "Yes", "BR_2_1_4_2_5": "No", "BR_2_3_2_4_1": "No, not available online to the public", "BR_2_1_4_4_1": "No", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 10, "BR_3_2_2_1_1": 24, "BR_3_2_3_1_1": 4750000}, "TGO": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": "Yes", "BR_1_2_1_2_3": "No", "BR_UQ_1": "Yes", "BR_1_2_2_1_1": "No", "BR_1_2_2_4_1": "No", "BR_1_2_1_3_1": "No", "BR_1_2_3_2_1": "Yes", "BR_1_2_3_3_1": "Yes", "BR_1_2_3_4_1": "Yes", "BR_1_2_3_1_1": "Yes", "BR_1_2_3_5_1": "Yes", "BR_2_3_2_6_1": "There is a master plan/zoning plan, but it has not been updated within the last 10 years", "BR_2_3_2_8_1": "Builder obtains formal urban planning approval from planning agency before obtaining building permit.", "BR_2_3_2_7_1": "Yes", "BR_1_2_1_10_1": "Yes", "BR_1_2_1_10_2": "No", "BR_1_2_1_10_3": "Yes", "BR_1_2_1_10_4": "No", "BR_1_2_1_6_3": "Yes", "BR_1_2_1_6_4": "Yes", "BR_1_2_1_5_1": "Yes", "BR_1_2_1_5_2": "Yes", "BR_1_2_1_5_3": "No", "BR_2_3_2_1_1": "Yes", "BR_2_2_2_1_1": "No", "BR_2_3_2_2_1": "Yes", "BR_2_3_2_2_2": "Yes", "BR_2_3_2_2_3": "Yes", "BR_2_3_2_3_1": "Yes", "BR_2_3_2_5_1": "No", "BR_2_1_4_1_1": "Yes", "BR_2_1_4_3_1": "Yes", "BR_2_1_4_3_2": "No", "BR_2_1_4_2_1": "Yes", "BR_2_1_4_2_2": "Yes", "BR_2_1_4_2_3": "Yes", "BR_2_1_4_2_4": "Yes", "BR_2_1_4_2_5": "Yes", "BR_2_3_2_4_1": "Yes, available online and updated regularly", "BR_2_1_4_4_1": "Yes", "BR_1_2_1_11_1": "No", "BR_3_2_1_1_1": 14, "BR_3_2_2_1_1": 45, "BR_3_2_3_1_1": 500000}}};
+
+// ===== GLOBAL STATE =====
+let map;
+let currentCountry = null;
+let selectedTopics = ['Planning and Zoning', 'Building Design', 'Materials', 'Compliance Mechanisms'];
+
+// ===== INITIALIZATION =====
 window.onload = function() {
+    initMap();
+    populateDropdown();
+    setupEventListeners();
+    console.log('Building Regulations Atlas loaded:', Object.keys(ATLAS_DATA.countries).length, 'countries,', Object.keys(ATLAS_DATA.indicators).length, 'indicators');
+};
+
+function initMap() {
+    map = L.map('mapDiv').setView([5, 20], 4);
     
-    // Country data
-    var countries = [
-        {code: "AGO", name: "Angola", lat: -12.5, lng: 18.5, hasReg: true, count: 45},
-        {code: "BEN", name: "Benin", lat: 9.3, lng: 2.3, hasReg: true, count: 52},
-        {code: "BWA", name: "Botswana", lat: -22.3, lng: 24.7, hasReg: true, count: 38},
-        {code: "BFA", name: "Burkina Faso", lat: 12.2, lng: -1.5, hasReg: true, count: 41},
-        {code: "CMR", name: "Cameroon", lat: 5.9, lng: 12.4, hasReg: true, count: 44},
-        {code: "CPV", name: "Cabo Verde", lat: 15.1, lng: -23.6, hasReg: true, count: 48},
-        {code: "CAF", name: "Central African Rep.", lat: 6.6, lng: 20.9, hasReg: false, count: 25},
-        {code: "TCD", name: "Chad", lat: 15.4, lng: 18.7, hasReg: true, count: 35},
-        {code: "COD", name: "DR Congo", lat: -4.0, lng: 21.8, hasReg: true, count: 55},
-        {code: "COG", name: "Congo", lat: -0.2, lng: 15.8, hasReg: true, count: 58},
-        {code: "GNQ", name: "Equatorial Guinea", lat: 1.6, lng: 10.3, hasReg: false, count: 22},
-        {code: "GMB", name: "Gambia", lat: 13.4, lng: -15.4, hasReg: true, count: 50},
-        {code: "GHA", name: "Ghana", lat: 7.9, lng: -1.0, hasReg: true, count: 65},
-        {code: "LSO", name: "Lesotho", lat: -29.6, lng: 28.2, hasReg: true, count: 48},
-        {code: "MDG", name: "Madagascar", lat: -18.9, lng: 46.9, hasReg: true, count: 52},
-        {code: "MLI", name: "Mali", lat: 17.6, lng: -4.0, hasReg: true, count: 55},
-        {code: "MUS", name: "Mauritius", lat: -20.3, lng: 57.6, hasReg: true, count: 68},
-        {code: "NAM", name: "Namibia", lat: -22.6, lng: 17.1, hasReg: true, count: 42},
-        {code: "RWA", name: "Rwanda", lat: -1.9, lng: 29.9, hasReg: true, count: 72},
-        {code: "SEN", name: "Senegal", lat: 14.5, lng: -14.5, hasReg: true, count: 58},
-        {code: "SYC", name: "Seychelles", lat: -4.7, lng: 55.5, hasReg: true, count: 62},
-        {code: "SLE", name: "Sierra Leone", lat: 8.5, lng: -11.8, hasReg: true, count: 38},
-        {code: "SSD", name: "South Sudan", lat: 7.9, lng: 30.0, hasReg: false, count: 18},
-        {code: "SWZ", name: "Eswatini", lat: -26.5, lng: 31.5, hasReg: true, count: 52},
-        {code: "TZA", name: "Tanzania", lat: -6.4, lng: 34.9, hasReg: true, count: 70},
-        {code: "TGO", name: "Togo", lat: 8.6, lng: 0.8, hasReg: true, count: 48}
-    ];
-    
-    // Initialize map
-    var map = L.map('map').setView([5, 20], 4);
-    
-    // Add tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap'
     }).addTo(map);
     
     // Add markers
-    countries.forEach(function(c) {
-        var color = c.count >= 60 ? '#1a5a9c' : (c.count >= 40 ? '#4a9fd4' : '#cccccc');
+    Object.entries(ATLAS_DATA.countries).forEach(([code, info]) => {
+        if (!info.lat || !info.lng) return;
         
-        var marker = L.circleMarker([c.lat, c.lng], {
+        const dataCount = ATLAS_DATA.data[code] ? Object.keys(ATLAS_DATA.data[code]).length : 0;
+        const color = dataCount >= 60 ? '#1a5a9c' : (dataCount >= 40 ? '#4a9fd4' : '#7fc4e8');
+        
+        const marker = L.circleMarker([info.lat, info.lng], {
             radius: 18,
             fillColor: color,
             color: '#ffffff',
@@ -100,27 +347,250 @@ window.onload = function() {
             fillOpacity: 0.9
         }).addTo(map);
         
-        var popupContent = '<div style="min-width:200px;font-family:Arial;">' +
-            '<h3 style="margin:0 0 10px;color:#002244;">' + c.name + '</h3>' +
-            '<p><strong>Building Code:</strong> ' + (c.hasReg ? '<span style="color:green">✓ Yes</span>' : '<span style="color:red">✗ No</span>') + '</p>' +
-            '<p><strong>Data Points:</strong> ' + c.count + '</p>' +
-            '<button onclick="alert(\'Full profile for ' + c.name + ' - Feature coming soon!\')" style="width:100%;padding:10px;background:#002244;color:white;border:none;border-radius:4px;cursor:pointer;margin-top:10px;">View Full Profile</button>' +
-            '</div>';
+        const hasReg = ATLAS_DATA.data[code] && ATLAS_DATA.data[code]['BR_1_2_1_1_1'] === 'Yes';
         
-        marker.bindPopup(popupContent);
+        const popup = `
+            <div style="font-family:'Source Sans Pro',Arial,sans-serif;min-width:220px;">
+                <h3 style="margin:0 0 12px;color:#002244;border-bottom:2px solid #f4a100;padding-bottom:8px;">${info.name}</h3>
+                <div style="margin:6px 0;display:flex;justify-content:space-between;">
+                    <span style="color:#666;">Building Code:</span>
+                    <strong style="color:${hasReg ? '#2e7d32' : '#c62828'}">${hasReg ? '✓ Yes' : '✗ No'}</strong>
+                </div>
+                <div style="margin:6px 0;display:flex;justify-content:space-between;">
+                    <span style="color:#666;">Data Points:</span>
+                    <strong>${dataCount}</strong>
+                </div>
+                <div style="margin:6px 0;display:flex;justify-content:space-between;">
+                    <span style="color:#666;">Income Group:</span>
+                    <strong style="font-size:0.9em;">${info.income || 'N/A'}</strong>
+                </div>
+                <button onclick="openModal('${code}')" style="width:100%;margin-top:12px;padding:10px;background:#002244;color:white;border:none;border-radius:4px;cursor:pointer;font-weight:600;font-size:14px;">
+                    View Full Profile →
+                </button>
+            </div>
+        `;
+        
+        marker.bindPopup(popup);
         
         marker.on('mouseover', function() {
-            this.openPopup();
             this.setStyle({fillOpacity: 1, weight: 4});
+            this.openPopup();
         });
-        
         marker.on('mouseout', function() {
             this.setStyle({fillOpacity: 0.9, weight: 3});
         });
     });
+}
+
+function populateDropdown() {
+    const select = document.getElementById('country-select');
+    const sorted = Object.entries(ATLAS_DATA.countries).sort((a,b) => a[1].name.localeCompare(b[1].name));
+    sorted.forEach(([code, info]) => {
+        const opt = document.createElement('option');
+        opt.value = code;
+        opt.textContent = info.name;
+        select.appendChild(opt);
+    });
+}
+
+function setupEventListeners() {
+    document.getElementById('country-select').addEventListener('change', function() {
+        if (this.value) {
+            openModal(this.value);
+            const info = ATLAS_DATA.countries[this.value];
+            if (info && info.lat && info.lng) {
+                map.setView([info.lat, info.lng], 5);
+            }
+        }
+    });
     
-    console.log('Map initialized with ' + countries.length + ' countries');
-};
+    document.querySelectorAll('.topic-item input').forEach(cb => {
+        cb.addEventListener('change', updateSelectedTopics);
+    });
+    
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+}
+
+function updateSelectedTopics() {
+    selectedTopics = [];
+    document.querySelectorAll('.topic-item input:checked').forEach(cb => {
+        selectedTopics.push(cb.value);
+    });
+}
+
+function applyFilters() {
+    const code = document.getElementById('country-select').value;
+    if (code) {
+        openModal(code);
+    }
+}
+
+// ===== MODAL FUNCTIONS =====
+function openModal(code) {
+    currentCountry = code;
+    const info = ATLAS_DATA.countries[code];
+    const data = ATLAS_DATA.data[code] || {};
+    const dataCount = Object.keys(data).length;
+    
+    document.getElementById('modal-title').textContent = info.name;
+    
+    const hasReg = data['BR_1_2_1_1_1'] === 'Yes';
+    document.getElementById('modal-highlights').innerHTML = `
+        <div class="highlight-item">
+            <div class="highlight-label">Region</div>
+            <div class="highlight-value">${info.region || 'Sub-Saharan Africa'}</div>
+        </div>
+        <div class="highlight-item">
+            <div class="highlight-label">Income Group</div>
+            <div class="highlight-value">${info.income || 'N/A'}</div>
+        </div>
+        <div class="highlight-item">
+            <div class="highlight-label">Building Regulation</div>
+            <div class="highlight-value">${hasReg ? '✓ Available' : '✗ Not Available'}</div>
+        </div>
+        <div class="highlight-item">
+            <div class="highlight-label">Data Points</div>
+            <div class="highlight-value">${dataCount}</div>
+        </div>
+    `;
+    
+    document.getElementById('modal-body').innerHTML = buildDataSections(code, data);
+    
+    // Setup collapsible sections
+    document.querySelectorAll('.data-section-header').forEach(header => {
+        header.addEventListener('click', () => {
+            header.parentElement.classList.toggle('collapsed');
+        });
+    });
+    
+    document.getElementById('modal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function buildDataSections(code, countryData) {
+    const topicConfig = {
+        'Planning and Zoning': { icon: '📍', subTopics: ['Planning and Zoning'] },
+        'Building Design': { icon: '🏗️', subTopics: ['General Provisions', 'Building Classification', 'Structural Resilience', 'Fire Safety', 'Green Buildings', 'Universal Accessibility', 'Services'] },
+        'Materials': { icon: '🧱', subTopics: ['Materials Disposal'] },
+        'Compliance Mechanisms': { icon: '✓', subTopics: ['Building Control', 'Transparency and Access to Information', 'Dispute Resolution', 'Professional Registration'] }
+    };
+    
+    // Group indicators by topic and sub-topic
+    const grouped = {};
+    Object.entries(ATLAS_DATA.indicators).forEach(([indId, indInfo]) => {
+        const mainTopic = indInfo.main_topic;
+        const subTopic = indInfo.sub_topic;
+        const value = countryData[indId];
+        
+        if (value === undefined || value === null) return;
+        if (!selectedTopics.includes(mainTopic)) return;
+        
+        if (!grouped[mainTopic]) grouped[mainTopic] = {};
+        if (!grouped[mainTopic][subTopic]) grouped[mainTopic][subTopic] = [];
+        
+        grouped[mainTopic][subTopic].push({
+            id: indId,
+            name: indInfo.name,
+            value: value,
+            source: indInfo.source
+        });
+    });
+    
+    let html = '';
+    
+    Object.entries(topicConfig).forEach(([topic, config]) => {
+        if (!grouped[topic]) return;
+        if (!selectedTopics.includes(topic)) return;
+        
+        let contentHtml = '';
+        let hasContent = false;
+        
+        config.subTopics.forEach(subTopic => {
+            const indicators = grouped[topic][subTopic];
+            if (!indicators || indicators.length === 0) return;
+            
+            hasContent = true;
+            contentHtml += `<div class="sub-section-title">${subTopic} (${indicators.length})</div>`;
+            contentHtml += '<table class="data-table">';
+            
+            indicators.forEach(ind => {
+                let valueClass = '';
+                let displayValue = ind.value;
+                if (ind.value === 'Yes') valueClass = 'data-value-yes';
+                else if (ind.value === 'No') valueClass = 'data-value-no';
+                else if (!ind.value) { valueClass = 'data-value-na'; displayValue = 'N/A'; }
+                
+                contentHtml += `<tr><td>${ind.name}</td><td class="${valueClass}">${displayValue}</td></tr>`;
+            });
+            
+            contentHtml += '</table>';
+        });
+        
+        if (hasContent) {
+            html += `
+                <div class="data-section">
+                    <div class="data-section-header">
+                        <div class="data-section-title">
+                            <span class="section-icon">${config.icon}</span>
+                            ${topic}
+                        </div>
+                        <span class="section-toggle">▼</span>
+                    </div>
+                    <div class="data-section-content">${contentHtml}</div>
+                </div>
+            `;
+        }
+    });
+    
+    if (!html) {
+        html = '<p style="text-align:center;color:#999;padding:2rem;">No data available for selected topics.</p>';
+    }
+    
+    return html;
+}
+
+function closeModal() {
+    document.getElementById('modal').classList.remove('show');
+    document.body.style.overflow = '';
+    document.getElementById('country-select').value = '';
+    currentCountry = null;
+}
+
+// ===== DOWNLOAD FUNCTIONS =====
+function downloadCSV() {
+    if (!currentCountry) return;
+    
+    const info = ATLAS_DATA.countries[currentCountry];
+    const data = ATLAS_DATA.data[currentCountry] || {};
+    
+    let csv = 'Indicator ID,Topic,Sub-Topic,Indicator Name,Value,Source\n';
+    
+    Object.entries(ATLAS_DATA.indicators).forEach(([indId, indInfo]) => {
+        const value = data[indId];
+        if (value !== undefined && value !== null) {
+            const row = [
+                indId,
+                indInfo.main_topic,
+                indInfo.sub_topic,
+                '"' + (indInfo.name || '').replace(/"/g, '""') + '"',
+                '"' + String(value).replace(/"/g, '""') + '"',
+                indInfo.source || ''
+            ].join(',');
+            csv += row + '\n';
+        }
+    });
+    
+    const blob = new Blob([csv], {type: 'text/csv'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = info.name.replace(/[^a-z0-9]/gi, '_') + '_building_regulations.csv';
+    a.click();
+}
+
+function printProfile() {
+    window.print();
+}
 </script>
 
 </body>
