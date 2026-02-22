@@ -20,14 +20,20 @@ body{font-family:'Source Sans Pro',Arial,sans-serif}
 .hero{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;padding:2rem;text-align:center}
 .hero p{max-width:900px;margin:0 auto}
 .filters{background:var(--light);padding:1.25rem 2rem}
-.filters-inner{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:1.25rem;align-items:flex-end}
+.filters-inner{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:1.25rem;align-items:flex-start}
 .filter-group{display:flex;flex-direction:column;gap:.5rem}
 .filter-label{font-weight:600;font-size:.8rem;color:var(--gray);text-transform:uppercase}
 .filter-select{padding:.6rem 1rem;font-size:.95rem;border:1px solid #ccc;border-radius:4px;min-width:200px}
 .topic-btns{display:flex;flex-wrap:wrap;gap:.5rem}
-.topic-btn{background:#fff;padding:.5rem .75rem;border-radius:4px;border:1px solid #ccc;cursor:pointer;font-size:.9rem}
+.topic-wrap{position:relative}
+.topic-btn{background:#fff;padding:.5rem .75rem;border-radius:4px;border:1px solid #ccc;cursor:pointer;font-size:.9rem;display:flex;align-items:center;gap:.3rem}
 .topic-btn.on{background:var(--blue);color:#fff;border-color:var(--blue)}
-.apply-btn{padding:.6rem 1.5rem;background:var(--blue);color:#fff;border:none;border-radius:4px;font-weight:600;cursor:pointer}
+.topic-btn .arrow{font-size:.6rem;margin-left:.25rem}
+.dropdown{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid #ccc;border-radius:4px;padding:.75rem;margin-top:.25rem;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:100;min-width:200px}
+.dropdown.show{display:block}
+.dropdown label{display:flex;align-items:center;gap:.5rem;padding:.35rem 0;font-size:.85rem;cursor:pointer;white-space:nowrap}
+.dropdown input{width:16px;height:16px;accent-color:var(--blue)}
+.apply-btn{padding:.6rem 1.5rem;background:var(--blue);color:#fff;border:none;border-radius:4px;font-weight:600;cursor:pointer;align-self:flex-end}
 .note{background:#e3f2fd;border:1px solid #90caf9;border-radius:4px;padding:.5rem 1rem;font-size:.8rem;color:#1565c0;margin-top:.75rem;max-width:700px}
 .map-wrap{position:relative}
 #map{height:550px;width:100%}
@@ -104,10 +110,33 @@ body{font-family:'Source Sans Pro',Arial,sans-serif}
 <div class="filter-group">
 <label class="filter-label">Topics</label>
 <div class="topic-btns">
-<span class="topic-btn on" data-t="Planning and Zoning" onclick="tog(this)">Planning</span>
-<span class="topic-btn on" data-t="Building Design" onclick="tog(this)">Design</span>
-<span class="topic-btn on" data-t="Materials" onclick="tog(this)">Materials</span>
-<span class="topic-btn on" data-t="Compliance Mechanisms" onclick="tog(this)">Compliance</span>
+<span class="topic-btn on" data-t="Planning and Zoning" onclick="togTopic(this)">Planning</span>
+
+<div class="topic-wrap">
+<span class="topic-btn on" data-t="Building Design" onclick="togDropdown(this)">Design <span class="arrow">▼</span></span>
+<div class="dropdown" id="dd-design">
+<label><input type="checkbox" checked data-sub="General Provisions" onchange="togSub(this)"> General Provisions</label>
+<label><input type="checkbox" checked data-sub="Building Classification" onchange="togSub(this)"> Building Classification</label>
+<label><input type="checkbox" checked data-sub="Structural Resilience" onchange="togSub(this)"> Structural Resilience</label>
+<label><input type="checkbox" checked data-sub="Fire Safety" onchange="togSub(this)"> Fire Safety</label>
+<label><input type="checkbox" checked data-sub="Green Buildings" onchange="togSub(this)"> Green Buildings</label>
+<label><input type="checkbox" checked data-sub="Universal Accessibility" onchange="togSub(this)"> Universal Accessibility</label>
+<label><input type="checkbox" checked data-sub="Services" onchange="togSub(this)"> Services</label>
+</div>
+</div>
+
+<span class="topic-btn on" data-t="Materials" onclick="togTopic(this)">Materials</span>
+
+<div class="topic-wrap">
+<span class="topic-btn on" data-t="Compliance Mechanisms" onclick="togDropdown(this)">Compliance <span class="arrow">▼</span></span>
+<div class="dropdown" id="dd-compliance">
+<label><input type="checkbox" checked data-sub="Building Control" onchange="togSub(this)"> Building Control</label>
+<label><input type="checkbox" checked data-sub="Transparency and Access to Information" onchange="togSub(this)"> Transparency</label>
+<label><input type="checkbox" checked data-sub="Dispute Resolution" onchange="togSub(this)"> Dispute Resolution</label>
+<label><input type="checkbox" checked data-sub="Professional Registration" onchange="togSub(this)"> Professional Registration</label>
+</div>
+</div>
+
 </div>
 </div>
 <button class="apply-btn" onclick="apply()">Apply</button>
@@ -137,8 +166,8 @@ body{font-family:'Source Sans Pro',Arial,sans-serif}
 <div class="grid4">
 <div class="source"><h4>Business Ready B-READY <span class="source-yr">2025</span></h4><p>Business climate and regulatory frameworks.</p><a href="https://www.worldbank.org/en/businessready" target="_blank">Visit</a></div>
 <div class="source"><h4>Global Building Codes <span class="source-yr">2025</span></h4><p>Technical building code content.</p><a href="https://www.worldbank.org" target="_blank">Learn More</a></div>
-<div class="source"><h4>Building Green Dataset <span class="source-yr">2025</span></h4><p>Energy codes and compliance.</p><a href="https://www.worldbank.org" target="_blank">Explore</a></div>
-<div class="source"><h4>Regulations in SSA <span class="source-yr">2023</span></h4><p>Sub-Saharan Africa focus.</p><a href="https://documents.worldbank.org" target="_blank">Access</a></div>
+<div class="source"><h4>Building Green Dataset <span class="source-yr">2025</span></h4><p>Energy codes and compliance.</p><a href="https://www.worldbank.org/en/building-green" target="_blank">Explore</a></div>
+<div class="source"><h4>Regulations in SSA <span class="source-yr">2023</span></h4><p>Sub-Saharan Africa focus.</p><a href="https://documentsinternal.worldbank.org/Search/34068263" target="_blank">Access</a></div>
 </div>
 </section>
 <footer class="footer">
@@ -177,18 +206,57 @@ var DATA={"AGO": {"BR_1_2_1_1_1": "Yes", "BR_1_2_1_2_1": "Yes", "BR_1_2_1_2_2": 
 <script>
 var map,markers={},cur=null,full=true;
 var tops=["Planning and Zoning","Building Design","Materials","Compliance Mechanisms"];
+var subs={
+  "Building Design":["General Provisions","Building Classification","Structural Resilience","Fire Safety","Green Buildings","Universal Accessibility","Services"],
+  "Compliance Mechanisms":["Building Control","Transparency and Access to Information","Dispute Resolution","Professional Registration"]
+};
 
 window.onload=function(){
   initMap();
   fillSel();
   document.getElementById("modal").onclick=function(e){if(e.target.id==="modal")closeM();};
+  document.addEventListener("click",function(e){
+    if(!e.target.closest(".topic-wrap")){
+      document.querySelectorAll(".dropdown").forEach(function(d){d.classList.remove("show");});
+    }
+  });
 };
 
-function tog(el){
+function togTopic(el){
   el.classList.toggle("on");
   var t=el.getAttribute("data-t");
   var i=tops.indexOf(t);
   if(i>-1){tops.splice(i,1);}else{tops.push(t);}
+  updMarkers();
+}
+
+function togDropdown(el){
+  var wrap=el.parentElement;
+  var dd=wrap.querySelector(".dropdown");
+  document.querySelectorAll(".dropdown").forEach(function(d){if(d!==dd)d.classList.remove("show");});
+  dd.classList.toggle("show");
+}
+
+function togSub(cb){
+  var sub=cb.getAttribute("data-sub");
+  var wrap=cb.closest(".topic-wrap");
+  var btn=wrap.querySelector(".topic-btn");
+  var t=btn.getAttribute("data-t");
+  
+  if(!subs[t])subs[t]=[];
+  var idx=subs[t].indexOf(sub);
+  
+  if(cb.checked){
+    if(idx===-1)subs[t].push(sub);
+    if(tops.indexOf(t)===-1){tops.push(t);btn.classList.add("on");}
+  }else{
+    if(idx>-1)subs[t].splice(idx,1);
+    if(subs[t].length===0){
+      var ti=tops.indexOf(t);
+      if(ti>-1)tops.splice(ti,1);
+      btn.classList.remove("on");
+    }
+  }
   updMarkers();
 }
 
@@ -218,7 +286,9 @@ function updMarkers(){
   for(var c in markers){
     var cnt=0,cd=DATA[c]||{};
     for(var id in INDICATORS){
-      if(tops.indexOf(INDICATORS[id].main_topic)===-1){continue;}
+      var ind=INDICATORS[id];
+      if(tops.indexOf(ind.main_topic)===-1){continue;}
+      if(subs[ind.main_topic]&&subs[ind.main_topic].indexOf(ind.sub_topic)===-1){continue;}
       if(cd[id]){cnt++;}
     }
     var cov=COUNTRIES[c]?COUNTRIES[c].coverage||{}:{};
@@ -279,6 +349,8 @@ function togView(){
   render(cur);
 }
 
+function toggleSec(el){el.parentElement.classList.toggle("closed");}
+
 function render(code){
   var cd=DATA[code]||{};
   var tlist=full?["Planning and Zoning","Building Design","Materials","Compliance Mechanisms"]:tops;
@@ -286,6 +358,7 @@ function render(code){
   for(var id in INDICATORS){
     var ind=INDICATORS[id],val=cd[id];
     if(!val||tlist.indexOf(ind.main_topic)===-1){continue;}
+    if(!full&&subs[ind.main_topic]&&subs[ind.main_topic].indexOf(ind.sub_topic)===-1){continue;}
     if(!grp[ind.main_topic]){grp[ind.main_topic]={};}
     if(!grp[ind.main_topic][ind.sub_topic]){grp[ind.main_topic][ind.sub_topic]=[];}
     grp[ind.main_topic][ind.sub_topic].push({n:ind.name,v:val});
@@ -310,8 +383,6 @@ function render(code){
   document.getElementById("mbody").innerHTML=html||"<p style='text-align:center;color:#999;padding:2rem'>No data</p>";
 }
 
-function toggleSec(el){el.parentElement.classList.toggle("closed");}
-
 function closeM(){
   document.getElementById("modal").classList.remove("show");
   document.body.style.overflow="";
@@ -326,6 +397,7 @@ function dlCSV(){
   for(var id in INDICATORS){
     var ind=INDICATORS[id],val=cd[id];
     if(!val||tlist.indexOf(ind.main_topic)===-1){continue;}
+    if(!full&&subs[ind.main_topic]&&subs[ind.main_topic].indexOf(ind.sub_topic)===-1){continue;}
     csv+=ind.main_topic+","+ind.sub_topic+","+ind.name+","+val+"\n";
   }
   var b=new Blob([csv],{type:"text/csv"});
@@ -343,6 +415,7 @@ function dlXL(){
   for(var id in INDICATORS){
     var ind=INDICATORS[id],val=cd[id];
     if(!val||tlist.indexOf(ind.main_topic)===-1){continue;}
+    if(!full&&subs[ind.main_topic]&&subs[ind.main_topic].indexOf(ind.sub_topic)===-1){continue;}
     rows.push({Topic:ind.main_topic,SubTopic:ind.sub_topic,Indicator:ind.name,Value:val});
   }
   var wb=XLSX.utils.book_new();
