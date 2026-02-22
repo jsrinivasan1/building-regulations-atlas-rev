@@ -90,13 +90,13 @@
         .info-section { padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }
         .section-title { color: var(--wb-blue); text-align: center; margin-bottom: 2rem; font-size: 1.8rem; }
         
-        .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .topic-card { background: var(--wb-gray-light); padding: 1.5rem; border-radius: 8px; }
-        .topic-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-        .topic-card-icon { font-size: 1.5rem; }
-        .topic-card h4 { color: var(--wb-blue); margin: 0; font-size: 1.1rem; }
-        .topic-card ul { margin: 0; padding-left: 1.25rem; }
-        .topic-card li { font-size: 0.9rem; color: var(--wb-gray); margin: 0.3rem 0; }
+        .topics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        .topic-card { background: var(--wb-gray-light); padding: 1.25rem; border-radius: 8px; }
+        .topic-card-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
+        .topic-card-icon { font-size: 1.25rem; }
+        .topic-card h4 { color: var(--wb-blue); margin: 0; font-size: 0.95rem; }
+        .topic-card ul { margin: 0; padding-left: 1.1rem; }
+        .topic-card li { font-size: 0.8rem; color: var(--wb-gray); margin: 0.2rem 0; }
         
         /* Data Sources */
         .sources-section { background: var(--wb-gray-light); padding: 3rem 2rem; }
@@ -211,11 +211,15 @@
         }
         
         /* Responsive */
+        @media (max-width: 1024px) {
+            .topics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
             .header-content { flex-direction: column; height: auto; padding: 1rem 0; gap: 0.5rem; }
             .filter-container { flex-direction: column; }
             .topic-filters { flex-direction: column; }
             #mapDiv { height: 350px; }
+            .topics-grid { grid-template-columns: 1fr; }
             .footer-top { flex-direction: column; }
             .footer-links { flex-direction: column; gap: 1.5rem; }
         }
