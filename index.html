@@ -305,10 +305,12 @@ function render(code){
       }
       con+="</table>";
     }
-    html+="<div class='dsec'><div class='dsec-head' onclick='this.parentElement.classList.toggle("closed")'><span>"+t+" - "+tot+"</span><span>v</span></div><div class='dsec-body'>"+con+"</div></div>";
+    html+="<div class='dsec'><div class='dsec-head' onclick='toggleSec(this)'><span>"+t+" - "+tot+"</span><span>v</span></div><div class='dsec-body'>"+con+"</div></div>";
   }
   document.getElementById("mbody").innerHTML=html||"<p style='text-align:center;color:#999;padding:2rem'>No data</p>";
 }
+
+function toggleSec(el){el.parentElement.classList.toggle("closed");}
 
 function closeM(){
   document.getElementById("modal").classList.remove("show");
