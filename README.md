@@ -1,7 +1,3 @@
-Here's the README text to copy:
-
----
-
 # Building Regulations Atlas
 
 A web-based interactive map showcasing building regulation data across Sub-Saharan African countries, developed by the World Bank Group and GFDRR.
