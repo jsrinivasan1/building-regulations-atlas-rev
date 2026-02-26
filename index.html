@@ -101,86 +101,121 @@ body.showing-country .country-view{display:block}
 .footer-social a:hover{background:rgba(255,255,255,.2)}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.8rem;opacity:.7}
 
+/* ========== COUNTRY PAGE - IMPROVED UI ========== */
 .country-page{max-width:1200px;margin:0 auto;padding:0 2rem 3rem}
-.back-bar{padding:1rem 0;border-bottom:1px solid #eee;margin-bottom:1.5rem}
-.back-btn{display:inline-flex;align-items:center;gap:.5rem;color:var(--wb-blue-light);font-weight:600;font-size:.9rem;cursor:pointer;background:none;border:none}
-.back-btn:hover{text-decoration:underline}
-.country-header{margin-bottom:2rem}
-.country-header h1{font-size:1.8rem;color:var(--wb-blue);margin-bottom:1rem}
 
-.highlights-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2rem}
-.highlight-box{background:var(--wb-gray-light);border-radius:8px;padding:1.25rem;border-top:3px solid var(--wb-blue)}
-.highlight-box h4{font-size:.75rem;color:var(--wb-gray);text-transform:uppercase;margin-bottom:.75rem;font-weight:600}
-.highlight-box.hazards{border-top-color:var(--wb-gold)}
-.highlight-box.status{border-top-color:var(--wb-green)}
-.facts-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
-.fact-item{display:flex;justify-content:space-between;font-size:.85rem}
-.fact-item span:first-child{color:var(--wb-gray)}
-.fact-item span:last-child{font-weight:600}
+.back-bar{padding:1rem 0;margin-bottom:1rem}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;color:var(--wb-blue-light);font-weight:600;font-size:.9rem;cursor:pointer;background:none;border:none;padding:.5rem 1rem;border-radius:4px;transition:background .2s}
+.back-btn:hover{background:rgba(26,90,156,.1);text-decoration:none}
+
+.country-header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:3px solid var(--wb-blue)}
+.country-header h1{font-size:2rem;color:var(--wb-blue);font-weight:700}
+
+/* Highlights Strip - More Visual */
+.highlights-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+.highlight-box{background:linear-gradient(135deg,#fff 0%,var(--wb-gray-light) 100%);border-radius:12px;padding:1.25rem 1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.08);border-left:4px solid var(--wb-blue);transition:transform .2s,box-shadow .2s}
+.highlight-box:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.highlight-box h4{font-size:.7rem;color:var(--wb-gray);text-transform:uppercase;margin-bottom:1rem;font-weight:700;letter-spacing:1px;display:flex;align-items:center;gap:.5rem}
+.highlight-box.hazards{border-left-color:var(--wb-gold)}
+.highlight-box.status{border-left-color:var(--wb-green)}
+.facts-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem .5rem}
+.fact-item{display:flex;flex-direction:column;font-size:.85rem}
+.fact-item span:first-child{color:var(--wb-gray);font-size:.75rem}
+.fact-item span:last-child{font-weight:700;font-size:1.05rem;color:var(--wb-blue)}
 .hazard-badges{display:flex;gap:.5rem;flex-wrap:wrap}
-.hazard-badge{padding:.35rem .75rem;border-radius:4px;font-size:.8rem;font-weight:500}
+.hazard-badge{padding:.4rem .9rem;border-radius:20px;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:.3rem}
 .hazard-badge.flood{background:#e3f2fd;color:#1565c0}
 .hazard-badge.heat{background:#fff3e0;color:#e65100}
 .hazard-badge.drought{background:#fbe9e7;color:#bf360c}
 .hazard-badge.earthquake{background:#f3e5f5;color:#7b1fa2}
 .hazard-badge.cyclone{background:#e8eaf6;color:#303f9f}
 .reg-status{display:flex;align-items:center;gap:.75rem}
-.reg-status-dot{width:12px;height:12px;border-radius:50%}
+.reg-status-dot{width:14px;height:14px;border-radius:50%;box-shadow:0 0 0 3px rgba(46,125,50,.2)}
 .reg-status-dot.available{background:var(--wb-green)}
-.reg-status-dot.unavailable{background:var(--wb-red)}
-.reg-status-text{font-size:1rem;font-weight:600}
+.reg-status-dot.unavailable{background:var(--wb-red);box-shadow:0 0 0 3px rgba(198,40,40,.2)}
+.reg-status-text{font-size:1.1rem;font-weight:700;color:#333}
 
-.country-filters{background:var(--wb-gray-light);border-radius:8px;padding:1.25rem;margin-bottom:1.5rem}
-.country-filters h4{font-size:.85rem;color:var(--wb-gray);margin-bottom:1rem;font-weight:600}
-.filter-grid{display:flex;flex-wrap:wrap;gap:1.5rem}
-.filter-col{min-width:180px}
-.filter-col h5{font-size:.8rem;color:var(--wb-blue);margin-bottom:.5rem;font-weight:600}
-.filter-col label{display:flex;align-items:center;gap:.5rem;font-size:.85rem;padding:.25rem 0;cursor:pointer}
-.filter-col input[type="checkbox"]{width:16px;height:16px;accent-color:var(--wb-blue)}
-.filter-actions{margin-top:1rem;display:flex;gap:1rem;align-items:center}
-.filter-actions button{padding:.5rem 1rem;border-radius:4px;font-size:.85rem;font-weight:600;cursor:pointer}
+/* Filters - Spread Out with 2-Column Building Design */
+.country-filters{background:linear-gradient(180deg,var(--wb-gray-light) 0%,#fff 100%);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.country-filters h4{font-size:.75rem;color:var(--wb-gray);margin-bottom:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.filter-grid{display:grid;grid-template-columns:1fr 2fr 1.5fr;gap:2rem;align-items:start}
+.filter-col h5{font-size:.85rem;color:var(--wb-blue);margin-bottom:.6rem;font-weight:700;display:flex;align-items:center;gap:.4rem;padding-bottom:.4rem;border-bottom:2px solid var(--wb-blue)}
+.filter-col label{display:flex;align-items:center;gap:.5rem;font-size:.85rem;padding:.3rem 0;cursor:pointer;transition:color .2s}
+.filter-col label:hover{color:var(--wb-blue-light)}
+.filter-col input[type="checkbox"]{width:18px;height:18px;accent-color:var(--wb-blue);cursor:pointer}
+
+/* Building Design - Two Columns */
+.filter-col.design-col .sub-checks{display:grid;grid-template-columns:1fr 1fr;gap:0 1.5rem}
+
+.filter-actions{margin-top:1.25rem;padding-top:1rem;border-top:1px solid #e0e0e0;display:flex;gap:1rem;align-items:center}
+.filter-actions button{padding:.6rem 1.25rem;border-radius:6px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s}
 .apply-filters-btn{background:var(--wb-blue);color:#fff;border:none}
-.clear-filters-btn{background:#fff;color:var(--wb-blue);border:1px solid var(--wb-blue)}
-.view-toggle{margin-left:auto;font-size:.85rem;color:var(--wb-gray)}
+.apply-filters-btn:hover{background:var(--wb-blue-light)}
+.clear-filters-btn{background:#fff;color:var(--wb-blue);border:2px solid var(--wb-blue)}
+.clear-filters-btn:hover{background:var(--wb-blue);color:#fff}
+.view-toggle{margin-left:auto;font-size:.85rem;color:var(--wb-gray);background:#fff;padding:.5rem 1rem;border-radius:6px;border:1px solid #ddd}
 .view-toggle a{color:var(--wb-blue-light);font-weight:600;cursor:pointer}
 
+/* Data Sections - More Visual */
 .data-sections{margin-bottom:2rem}
-.data-section{border:1px solid #ddd;border-radius:8px;margin-bottom:1rem;overflow:hidden}
-.data-section-header{background:var(--wb-gray-light);padding:1rem 1.25rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.data-section-header:hover{background:#eee}
-.data-section-title{display:flex;align-items:center;gap:.6rem;font-weight:600;font-size:1rem;color:var(--wb-blue)}
-.data-section-count{font-size:.8rem;color:var(--wb-gray);font-weight:400}
-.data-section-toggle{font-size:.8rem;color:var(--wb-gray)}
-.data-section-body{padding:1.25rem}
+.data-section{border:none;border-radius:12px;margin-bottom:1rem;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.data-section-header{background:linear-gradient(135deg,var(--wb-blue) 0%,var(--wb-blue-light) 100%);padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:#fff}
+.data-section-header:hover{opacity:.95}
+.data-section-title{display:flex;align-items:center;gap:.75rem;font-weight:600;font-size:1.05rem}
+.data-section-count{font-size:.8rem;opacity:.8;font-weight:400}
+.data-section-toggle{font-size:1rem;opacity:.8}
+.data-section-body{padding:1.25rem 1.5rem;background:#fff}
 .data-section.collapsed .data-section-body{display:none}
 
 .subtopic-group{margin-bottom:1.5rem}
 .subtopic-group:last-child{margin-bottom:0}
-.subtopic-header{display:flex;align-items:center;gap:.5rem;padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:.75rem}
-.subtopic-header h5{font-size:.9rem;color:var(--wb-blue-light);font-weight:600}
-.subtopic-header .count{font-size:.75rem;color:var(--wb-gray);margin-left:.5rem}
+.subtopic-header{display:flex;align-items:center;gap:.5rem;padding:.6rem 0;border-bottom:2px solid var(--wb-blue-light);margin-bottom:.75rem}
+.subtopic-header h5{font-size:.95rem;color:var(--wb-blue-light);font-weight:700}
+.subtopic-header .count{font-size:.75rem;color:#fff;background:var(--wb-blue-light);padding:2px 8px;border-radius:10px;margin-left:.5rem}
 
-.indicator-row{padding:.75rem 0;border-bottom:1px solid #f5f5f5}
+.indicator-row{padding:.85rem 0;border-bottom:1px solid #f0f0f0;transition:background .2s}
+.indicator-row:hover{background:#f8f9fa}
 .indicator-row:last-child{border-bottom:none}
-.indicator-main{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.indicator-main{display:flex;justify-content:space-between;align-items:flex-start;gap:1.5rem}
 .indicator-info{flex:1}
-.indicator-name{font-size:.9rem;font-weight:500;color:#333;margin-bottom:.25rem}
-.indicator-detail{font-size:.8rem;color:var(--wb-gray);line-height:1.4;margin-bottom:.4rem}
+.indicator-name{font-size:.95rem;font-weight:600;color:#333;margin-bottom:.3rem}
+.indicator-detail{font-size:.8rem;color:var(--wb-gray);line-height:1.5;margin-bottom:.5rem}
 .indicator-meta{display:flex;gap:.75rem;flex-wrap:wrap}
-.indicator-source{font-size:.7rem;padding:2px 6px;border-radius:3px;background:#e3f2fd;color:#1565c0}
-.indicator-ref{font-size:.7rem;color:var(--wb-gray)}
-.indicator-value{font-size:.95rem;font-weight:600;white-space:nowrap;padding:.25rem .75rem;border-radius:4px}
+.indicator-source{font-size:.7rem;padding:3px 8px;border-radius:4px;background:var(--wb-blue);color:#fff;font-weight:500}
+.indicator-ref{font-size:.7rem;color:var(--wb-gray);background:#f0f0f0;padding:3px 8px;border-radius:4px}
+.indicator-value{font-size:1rem;font-weight:700;white-space:nowrap;padding:.4rem 1rem;border-radius:6px;min-width:60px;text-align:center}
 .indicator-value.yes{background:#e8f5e9;color:var(--wb-green)}
 .indicator-value.no{background:#ffebee;color:var(--wb-red)}
 .indicator-value.na{background:var(--wb-gray-light);color:var(--wb-gray)}
 
-.export-bar{display:flex;gap:.75rem;justify-content:flex-end;padding:1rem 0;border-top:1px solid #eee;margin-top:1rem}
-.export-btn{padding:.6rem 1.25rem;border:1px solid var(--wb-blue);background:#fff;color:var(--wb-blue);border-radius:4px;font-weight:600;font-size:.85rem;cursor:pointer}
-.export-btn:hover{background:var(--wb-blue);color:#fff}
+.export-bar{display:flex;gap:.75rem;justify-content:flex-end;padding:1.25rem 0;border-top:2px solid var(--wb-gray-light);margin-top:1.5rem}
+.export-btn{padding:.7rem 1.5rem;border:2px solid var(--wb-blue);background:#fff;color:var(--wb-blue);border-radius:8px;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.5rem}
+.export-btn:hover{background:var(--wb-blue);color:#fff;transform:translateY(-1px)}
 
-@media(max-width:1024px){.topics-grid,.sources-grid{grid-template-columns:repeat(2,1fr)}.highlights-strip{grid-template-columns:1fr}}
-@media(max-width:768px){.topics-grid,.sources-grid{grid-template-columns:1fr}#map{height:400px}.selector-inner{flex-direction:column;align-items:stretch}.selector-select{width:100%}.filter-grid{flex-direction:column}.footer-top{flex-direction:column}}
-@media print{.header,.country-selector,.map-section,.topics-section,.sources-section,.footer,.back-bar,.country-filters,.export-bar,.map-legend{display:none!important}body.showing-country .country-view{display:block}.country-page{padding:0;max-width:100%}.data-section-body{display:block!important}.print-header{display:block!important}.print-footer{display:block!important}}
+@media(max-width:1024px){
+  .topics-grid,.sources-grid{grid-template-columns:repeat(2,1fr)}
+  .highlights-strip{grid-template-columns:1fr}
+  .filter-grid{grid-template-columns:1fr 1fr;gap:1.5rem}
+  .filter-col.design-col .sub-checks{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .topics-grid,.sources-grid{grid-template-columns:1fr}
+  #map{height:400px}
+  .selector-inner{flex-direction:column;align-items:stretch}
+  .selector-select{width:100%}
+  .filter-grid{grid-template-columns:1fr}
+  .footer-top{flex-direction:column}
+  .country-header h1{font-size:1.5rem}
+}
+@media print{
+  .header,.country-selector,.map-section,.topics-section,.sources-section,.footer,.back-bar,.country-filters,.export-bar,.map-legend{display:none!important}
+  body.showing-country .country-view{display:block}
+  .country-page{padding:0;max-width:100%}
+  .data-section-body{display:block!important}
+  .data-section-header{background:var(--wb-blue)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .print-header{display:block!important}
+  .print-footer{display:block!important}
+}
 .print-header,.print-footer{display:none}
 </style>
 </head>
@@ -253,30 +288,44 @@ body.showing-country .country-view{display:block}
 <div class="print-header"><h2>Building Regulations Atlas - Country Profile</h2><p>World Bank Group | GFDRR</p></div>
 <div class="back-bar"><button class="back-btn" onclick="showHome()">← Back to Map</button></div>
 <div class="country-header"><h1 id="country-title">Country Name</h1></div>
+
 <div class="highlights-strip">
-<div class="highlight-box"><h4>📊 Key Facts (2024)</h4><div class="facts-grid" id="key-facts"></div></div>
-<div class="highlight-box hazards"><h4>⚠️ Major Hazards</h4><div class="hazard-badges" id="hazard-badges"></div></div>
-<div class="highlight-box status"><h4>📋 Regulatory Status</h4><div class="reg-status" id="reg-status"></div></div>
+<div class="highlight-box">
+<h4>📊 Key Facts (2024)</h4>
+<div class="facts-grid" id="key-facts"></div>
 </div>
+<div class="highlight-box hazards">
+<h4>⚠️ Major Hazards</h4>
+<div class="hazard-badges" id="hazard-badges"></div>
+</div>
+<div class="highlight-box status">
+<h4>📋 Regulatory Status</h4>
+<div class="reg-status" id="reg-status"></div>
+</div>
+</div>
+
 <div class="country-filters">
 <h4>Filter by Topic</h4>
 <div class="filter-grid">
 <div class="filter-col">
-<label><input type="checkbox" checked data-topic="Planning and Zoning" onchange="updateFilters()"> 📍 Planning and Zoning</label>
-<label><input type="checkbox" checked data-topic="Materials" onchange="updateFilters()"> 🧱 Materials</label>
+<h5>📍 Topics</h5>
+<label><input type="checkbox" checked data-topic="Planning and Zoning" onchange="updateFilters()"> Planning and Zoning</label>
+<label><input type="checkbox" checked data-topic="Materials" onchange="updateFilters()"> Materials</label>
 </div>
-<div class="filter-col">
+<div class="filter-col design-col">
 <h5>🏗️ Building Design</h5>
+<div class="sub-checks">
 <label><input type="checkbox" checked data-sub="General Provisions" onchange="updateFilters()"> General Provisions</label>
-<label><input type="checkbox" checked data-sub="Building Classification" onchange="updateFilters()"> Building Classification</label>
-<label><input type="checkbox" checked data-sub="Structural Resilience" onchange="updateFilters()"> Structural Resilience</label>
 <label><input type="checkbox" checked data-sub="Fire Safety" onchange="updateFilters()"> Fire Safety</label>
+<label><input type="checkbox" checked data-sub="Building Classification" onchange="updateFilters()"> Building Classification</label>
 <label><input type="checkbox" checked data-sub="Green Buildings" onchange="updateFilters()"> Green Buildings</label>
+<label><input type="checkbox" checked data-sub="Structural Resilience" onchange="updateFilters()"> Structural Resilience</label>
 <label><input type="checkbox" checked data-sub="Universal Accessibility" onchange="updateFilters()"> Universal Accessibility</label>
 <label><input type="checkbox" checked data-sub="Services" onchange="updateFilters()"> Services</label>
 </div>
+</div>
 <div class="filter-col">
-<h5>✓ Compliance Mechanisms</h5>
+<h5>✓ Compliance</h5>
 <label><input type="checkbox" checked data-sub="Building Control" onchange="updateFilters()"> Building Control</label>
 <label><input type="checkbox" checked data-sub="Dispute Resolution" onchange="updateFilters()"> Dispute Resolution</label>
 <label><input type="checkbox" checked data-sub="Transparency and Access to Information" onchange="updateFilters()"> Transparency</label>
@@ -289,12 +338,15 @@ body.showing-country .country-view{display:block}
 <div class="view-toggle">Showing: <span id="view-status">All data</span></div>
 </div>
 </div>
+
 <div class="data-sections" id="data-sections"></div>
+
 <div class="export-bar">
 <button class="export-btn" onclick="downloadCSV()">📥 Download CSV</button>
 <button class="export-btn" onclick="downloadExcel()">📊 Download Excel</button>
 <button class="export-btn" onclick="window.print()">🖨️ Print / PDF</button>
 </div>
+
 <div class="print-footer"><p>Generated from Building Regulations Atlas on <span id="print-date"></span></p><p>© 2026 World Bank Group. All Rights Reserved.</p></div>
 </div>
 </div>
@@ -393,8 +445,6 @@ function initMap() {
       });
     })(code, marker);
   }
-  
-  console.log("Map initialized with " + Object.keys(markers).length + " markers");
 }
 
 function getCountryColor(code) {
@@ -577,7 +627,7 @@ function renderData() {
     for (var sub in grouped[topic]) {
       var items = grouped[topic][sub];
       totalCount += items.length;
-      sectionContent += '<div class="subtopic-group"><div class="subtopic-header"><h5>' + (SUBTOPIC_ICONS[sub] || "•") + ' ' + sub + '</h5><span class="count">(' + items.length + ')</span></div>';
+      sectionContent += '<div class="subtopic-group"><div class="subtopic-header"><h5>' + (SUBTOPIC_ICONS[sub] || "•") + ' ' + sub + '</h5><span class="count">' + items.length + '</span></div>';
       for (var j = 0; j < items.length; j++) {
         var item = items[j];
         var valClass = item.value === "Yes" ? "yes" : (item.value === "No" ? "no" : "na");
@@ -585,7 +635,7 @@ function renderData() {
       }
       sectionContent += '</div>';
     }
-    html += '<div class="data-section"><div class="data-section-header" onclick="toggleSection(this)"><div class="data-section-title">' + (TOPIC_ICONS[topic] || "•") + ' ' + topic + ' <span class="data-section-count">(' + totalCount + ')</span></div><span class="data-section-toggle">▼</span></div><div class="data-section-body">' + sectionContent + '</div></div>';
+    html += '<div class="data-section"><div class="data-section-header" onclick="toggleSection(this)"><div class="data-section-title">' + (TOPIC_ICONS[topic] || "•") + ' ' + topic + ' <span class="data-section-count">(' + totalCount + ' indicators)</span></div><span class="data-section-toggle">▼</span></div><div class="data-section-body">' + sectionContent + '</div></div>';
   }
   container.innerHTML = html || '<p style="text-align:center;color:#999;padding:2rem">No data available.</p>';
 }
