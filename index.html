@@ -6,7 +6,7 @@
 <title>Building Regulations Atlas</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+<script src="https://unpkg.com/xlsx@0.20.1/dist/xlsx.full.min.js" defer></script>
 <style>
 :root{
   --wb-blue:#002244;
@@ -417,12 +417,12 @@ var isFiltered = false;
 var activeTopics = ["Spatial Planning","Planning and Zoning","Building Design","Materials","Compliance Mechanisms"];
 var activeSubs = {"Building Design":["General Provisions","Building Classification","Structural Resilience","Fire Safety","Green Buildings","Universal Accessibility","Services"],"Compliance Mechanisms":["Building Control","Dispute Resolution","Transparency and Access to Information","Professional Registration"]};
 
-window.onload = function() {
+document.addEventListener("DOMContentLoaded", function() {
   initMap();
   populateSelect();
   checkHash();
   document.getElementById("print-date").textContent = new Date().toLocaleDateString();
-};
+});
 
 window.onhashchange = checkHash;
 
